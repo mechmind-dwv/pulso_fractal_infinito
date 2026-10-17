@@ -1,0 +1,17 @@
+# Binarios y artefactos grandes
+*.zip
+trayectoria_*.html
+*.png
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Datos regenerables pesados (descomentar si querés excluirlos del repo)
+# salida_pfi01_*/trayectoria.csv
+# salida_pfi01_*/espectro_entropia.csv
+
+# Entornos
+venv/
+.venv/
