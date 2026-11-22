@@ -17,7 +17,7 @@ Scripts de análisis sobre las tablas de ceros de Odlyzko (v0.4). Ejecutar desde
 
 **No** muestran un atractor ni una "red cósmica": con controles (espaciados barajados, GUE simulado) los resultados son indistinguibles. Se conservan como instrumentación visual. Detalle en el README principal, sección "Qué NO se sostiene".
 
-`criterio_li_1M.py` apunta a `ceros_1millon.txt`, que no está en el repo; la positividad de λₙ para n ≤ 100 es un resultado ya conocido.
+`criterio_li.py` y `criterio_li_1M.py` calculan los coeficientes de Keiper–Li fijando ρ = 1/2 + it. Con esa suposición cada término vale 1 − cos(nφ) ≥ 0, así que λₙ > 0 sale siempre: **no contrasta la Hipótesis de Riemann**. Solo sirven para comprobar la fórmula (λ₁ ≈ 0.0231).
 
 ## Datos
 

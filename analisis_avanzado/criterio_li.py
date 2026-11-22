@@ -27,8 +27,8 @@ def calcular_li(ruta_ceros, max_n=100):
     # Verificación
     print("\n" + "="*40)
     if all(l > 0 for l in lambdas):
-        print("¡VERIFICADO! Todos los coeficientes lambda_n > 0.")
-        print("Esto es consistente con la Hipótesis de Riemann.")
+        print("Todos los lambda_n > 0, pero es AUTOMATICO: con rho=1/2+it fijado cada termino 1-cos(n*phi) >= 0.")
+        print("Esto NO prueba ni contrasta la Hipotesis (el resultado esta garantizado por construccion).")
     else:
         print("¡ALERTA! Se encontró un coeficiente negativo.")
         print("Esto sería un contraejemplo a la Hipótesis de Riemann.")

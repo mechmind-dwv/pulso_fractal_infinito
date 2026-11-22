@@ -63,7 +63,7 @@ Espaciados normalizados con la ley suave N(t) = θ(t)/π + 1.
 
 (GUE asintótico: ⟨r⟩ = 0.5996. GUE simulado: 40 matrices de 800×800, centro del espectro, *unfolding* con la ley del semicírculo.) Los ceros están algo más rígidos y más anticorrelacionados que GUE a esta altura: es la corrección de altura finita de Bogomolny–Keating.
 
-<img src="assets/matrix_ceros_vs_gue.png" width="100%" alt="P(s), Sigma2(L) y R2(x): ceros vs GUE">
+<img src="assets/matrix_ceros_vs_gue.jpg" width="100%" alt="P(s), Sigma2(L) y R2(x): ceros vs GUE">
 
 *`analisis_avanzado/ver_matrix.py`: P(s), varianza del conteo Σ²(L) y correlación de pares R₂(x) frente a 1 − sinc². La curva teórica es la de Montgomery; los datos son los ceros reales.*
 

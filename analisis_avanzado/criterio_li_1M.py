@@ -27,7 +27,7 @@ def calcular_li_1M(ruta_ceros, max_n=100):
     print("\n" + "="*40)
     print(f"Resultado para n={max_n}: lambda_{max_n} = {lambdas[-1]:.5f}")
     print(f"Resultado para n=1: lambda_1 = {lambdas[0]:.5f}")
-    print("Todos positivos." if all(l > 0 for l in lambdas) else "¡ALERTA! Negativo encontrado.")
+    print("Todos positivos (AUTOMATICO por construccion: rho=1/2+it fijado; no prueba nada)." if all(l > 0 for l in lambdas) else "¡ALERTA! Negativo encontrado.")
     print("="*40)
 
 if __name__ == "__main__":
