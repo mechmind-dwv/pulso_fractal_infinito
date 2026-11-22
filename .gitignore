@@ -15,4 +15,3 @@ __pycache__/
 # Entornos
 venv/
 .venv/
-salida_pfi01_*/trayectoria.csv
