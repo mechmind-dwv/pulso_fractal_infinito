@@ -97,6 +97,19 @@ La teoría se sostiene en los datos, pero los datos se entienden mejor cuando se
 | <img src="assets/trayectoria_3d.jpg" width="400" alt="Trayectoria 3D y Z(t)"> | <img src="assets/manuscrito.jpg" width="400" alt="Manuscrito en el navegador"> |
 | *Visor interactivo: Trayectoria 3D de Γ(t), proyección 2D y la función Z(t) con los ceros marcados.* | *El ensayo y el apéndice matemático viven en `docs/manuscrito.md` y se pueden leer desde el navegador.* |
 
+## El Duelo: Orden Cuántico vs. Caos Aleatorio
+
+Para validar la estructura de los ceros de Riemann, el pipeline contrasta los **datos empíricos reales** (obtenidos del millón de ceros de Odlyzko) contra predicciones teóricas y simulaciones de azar puro.
+
+### 1. Evidencia Cuantitativa: Distribución de Espaciados P(s)
+La distribución empírica (amarillo) se alinea perfectamente con la predicción de la Teoría de Matrices Aleatorias (GUE, azul), demostrando la "repulsión de niveles". El modelo sin correlación (Poisson, verde) queda categóricamente descartado.
+
+<img src="assets/comparacion_2d.png" width="100%" alt="Distribución P(s) 2D">
+
+### 2. Evidencia Geométrica: Inmersión de Takens 3D
+Al proyectar los espaciados en un espacio de fases tridimensional, la diferencia estructural es evidente. Los ceros de Riemann (izquierda) forman una "cúpula" con un vacío en el origen (repulsión). Una simulación de azar puro (derecha) colapsa contra el origen en una masa densa sin estructura.
+
+<img src="assets/comparacion_3d.png" width="100%" alt="Comparación 3D GUE vs Poisson">
 ---
 
 ## Estructura del repositorio
