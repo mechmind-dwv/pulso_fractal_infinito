@@ -89,3 +89,4 @@ tentativa, no como fuente del mecanismo.
 - v0.3 (`docs/manuscrito.md`): se agregó la sección V con los resultados
   espectrales de N=5000 y se creó `docs/` para que el ensayo viva junto al
   pipeline en vez de aparte.
+# pulso_fractal_infinito
