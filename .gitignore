@@ -15,3 +15,5 @@ __pycache__/
 # Entornos
 venv/
 .venv/
+!assets/*.png
+!assets/*.jpg
