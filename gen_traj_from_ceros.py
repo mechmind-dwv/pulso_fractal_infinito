@@ -13,8 +13,11 @@ DPS = 15  # bajamos dps solo para la viz; el CSV de ceros sigue siendo el bueno
 # 1) leer t_max de ceros.csv
 ts = []
 with open(f"{base}/ceros.csv") as f:
-    for row in csv.DictReader(f):
-        ts.append(float(row["t"]))
+    rdr = csv.DictReader(f)
+    for row in rdr:
+        _keys = ("t","zero","cero","gamma","imag","imaginary","value")
+        _k = next((k for k in _keys if k in row), list(row.keys())[0] if row else None)
+        ts.append(float(row[_k]))
 t_max = max(ts)
 n_pts = int(t_max * DENSIDAD)
 print(f"N={N}  t_max={t_max:.3f}  puntos={n_pts}  dps={DPS}")
