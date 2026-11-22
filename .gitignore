@@ -17,3 +17,4 @@ venv/
 .venv/
 !assets/*.png
 !assets/*.jpg
+analisis_avanzado/ceros_2M.txt.gz

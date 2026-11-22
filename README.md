@@ -4,12 +4,7 @@
 
 ### Una lectura geométrica y espectral de la Hipótesis de Riemann
 
-**PFI-01** · Programa de investigación computacional
-
-[![Estado](https://img.shields.io/badge/estado-v0.3-blue.svg)](#historial-de-versiones)
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Termux](https://img.shields.io/badge/tested%20on-Termux-000000.svg)](https://termux.dev/)
-[![Licencia](https://img.shields.io/badge/licencia-CC%20BY--NC%204.0-lightgrey.svg)](#licencia)
+**PFI-01** · Programa de investigación computacional · **v0.4**
 
 *Benjamín Cabeza Durán*
 
@@ -17,332 +12,177 @@
 
 ---
 
-## Tabla de contenidos
+## Qué es
 
-- [Qué es este proyecto](#qué-es-este-proyecto)
-- [Dos lecturas distintas](#dos-lecturas-distintas)
-- [Resultados verificables](#resultados-verificables)
-- [Galería de resultados](#galería-de-resultados)
-- [Estructura del repositorio](#estructura-del-repositorio)
-- [Instalación](#instalación)
-- [Uso del pipeline](#uso-del-pipeline)
-- [Metodología](#metodología)
-- [Reproducibilidad](#reproducibilidad)
-- [Alcance y limitaciones](#alcance-y-limitaciones)
-- [Referencias](#referencias)
-- [Historial de versiones](#historial-de-versiones)
-- [Cómo citar](#cómo-citar)
-- [Licencia](#licencia)
-
----
-
-## Qué es este proyecto
-
-`pulso_fractal_infinito` es un **pipeline computacional abierto** que acompaña al ensayo homónimo. Traduce la Hipótesis de Riemann a dos lenguajes medibles —geometría de la curva `Γ(t)=ζ(1/2+it)` y estadística espectral de los ceros— y deja todo el código, los datos y las figuras versionados para que cualquier persona pueda recalcularlos desde cero.
-
-No es un intento de demostración. Es un **instrumento**: mide, compara, cuantifica desviaciones, y —sobre todo— deja claro dónde termina lo que los datos permiten afirmar y dónde empieza la hipótesis de trabajo.
+Un **pipeline computacional abierto** que mide la estructura estadística de los ceros no triviales de ζ(s) y la compara con predicciones teóricas cerradas (GUE, Poisson, Selberg, Berry). No es una demostración: es un instrumento que dice qué se puede afirmar con los datos y qué no.
 
 > *"Nada de esto demuestra ni refuta la Hipótesis de Riemann."*
-> — Sección «Alcance», versión 0.3
 
 ---
 
-## Dos lecturas distintas
+## Resumen de la v0.4
 
-El proyecto separa explícitamente dos niveles de análisis con estándares de evidencia diferentes:
-
-| | **Lectura geométrica** | **Lectura espectral** |
-|---|---|---|
-| **Objeto** | Trayectoria `Γ(t)=ζ(1/2+it)`, dimensión de caja, autocorrelación, entropía | Espaciados normalizados `s_n`, razón `⟨r⟩`, rigidez `Δ₃(L)`, `Σ²` |
-| **Comparación teórica** | Ninguna cerrada (descriptiva) | GUE y Poisson (predicciones exactas) |
-| **Significancia** | Cualitativa; depende de la resolución de muestreo | Cuantificable en σ |
-| **Estado** | Instrumentación | Hallazgo con peso estadístico (N=5000) |
-
-Esta separación es deliberada: mezclar una lectura exploratoria con una verificación estadística cerrada es el error metodológico más común en trabajos amateur sobre ζ(s). El repositorio lo evita por diseño.
+| Resultado | Estado |
+|---|---|
+| Estadística local (P(s), ⟨r⟩, correlación de pares) sigue GUE con la corrección de altura finita esperada | Medido, reproducible |
+| Σ²(L) satura a gran escala (saturación de Berry), no crece como GUE | Medido, reproducible |
+| Conteo de ceros consistente con N(T) hasta t ≈ 1.13×10⁶, con detector validado por borrado | Medido (numérico, no riguroso) |
+| Var S(T) crece como ln ln T y la curtosis tiende a 3, hasta el cero nº 10²² | Medido; reproduce a Selberg |
+| "Atractor extraño" D₂ ≈ 1.2256 | **Retirado** (el control barajado da 1.2322) |
+| "Red cósmica" / "materia oscura" | **Retirado** (metáfora visual sin contenido físico) |
 
 ---
 
-## Resultados verificables
+## Datos
 
-Con los primeros **4999 espaciados** entre ceros no triviales (N=5000):
+Tablas de ceros de A. Odlyzko (<https://www-users.cse.umn.edu/~odlyzko/zeta_tables>). Los datos no son del autor; se descargan, no se versionan:
 
-| Estadístico | Valor empírico | Predicción GUE | Desviación | Tipo |
+```bash
+cd analisis_avanzado
+curl -L -o ceros_2M.txt.gz https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros6.gz   # 2.001.052 ceros
+curl -L -o zeros3.txt https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros3            # 10^4 ceros desde el nº 10^12
+curl -L -o zeros4.txt https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros4            # ... desde 10^21
+curl -L -o zeros5.txt https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros5            # ... desde 10^22
+```
+
+`ceros_100k.txt` (primeros 100.000 ceros) está en el repo.
+
+---
+
+## Resultados
+
+### 1. Estadística local (100.000 ceros)
+
+Espaciados normalizados con la ley suave N(t) = θ(t)/π + 1.
+
+| | ceros | GUE simulado | barajado | Poisson |
 |---|---|---|---|---|
-| `P(s < 0.3)` | **1.48 %** | 2.73 % | **≈ 5.4 σ** | corto alcance |
-| `⟨r⟩` | **0.616** | 0.5996 | **≈ 4.2 σ** | corto alcance |
-| `Δ₃(L)`, L ∈ [5, 50] | curva empírica aplanada | crece logarítmicamente | misma dirección | largo alcance |
+| ⟨r⟩ | 0.6109 | 0.6003 | 0.6519 | 0.386 |
+| P(s<0.3) | 2.11 % | 2.58 % | 2.11 % | 26 % |
+| corr(sₙ, sₙ₊₁) | −0.357 | −0.310 | −0.004 | 0.000 |
 
-### Evidencia Estadística Definitiva (N=100,000)
+(GUE asintótico: ⟨r⟩ = 0.5996. GUE simulado: 40 matrices de 800×800, centro del espectro, *unfolding* con la ley del semicírculo.) Los ceros están algo más rígidos y más anticorrelacionados que GUE a esta altura: es la corrección de altura finita de Bogomolny–Keating.
 
-Con los primeros 100,000 ceros, la distribución de los espaciados normalizados se alinea de forma casi perfecta con la predicción de la Teoría de Matrices Aleatorias (GUE) y rechaza categóricamente la ausencia de correlación (Poisson). La caída a cero en `s → 0` demuestra la **Repulsión de Niveles**: los ceros se comportan como partículas cuánticas que no pueden ocupar el mismo estado.
+<img src="assets/matrix_ceros_vs_gue.png" width="100%" alt="P(s), Sigma2(L) y R2(x): ceros vs GUE">
 
-<img src="assets/espectral_100k.png" width="100%" alt="GUE vs Poisson N=100k">
+*`analisis_avanzado/ver_matrix.py`: P(s), varianza del conteo Σ²(L) y correlación de pares R₂(x) frente a 1 − sinc². La curva teórica es la de Montgomery; los datos son los ceros reales.*
 
-*El valor medido ⟨r⟩ = 0.611 confirma la corrección de altura finita de Bogomolny-Keating: a T finito, el espectro es más rígido que el límite asintótico GUE (0.5996).*
+### 2. Gran escala: saturación de Berry
 
-**Interpretación (no es una anomalía nueva):** los tres estadísticos apuntan, con dirección consistente y orden de magnitud coherente, a la **corrección de altura finita** a la convergencia GUE descrita por Bogomolny–Keating (1996) y Berry–Keating (1999): a `T` finito el espectro de ceros de ζ(s) es **más rígido** que el límite asintótico, y la corrección decae con `T`. Al dividir la muestra en `t < 1500` y `t ≥ 1500`, ambas ventanas se mueven en la dirección esperada.
+Σ²(L) sigue a GUE hasta L ≈ 5 y se aplana en torno a 0.35–0.45, mientras GUE sigue creciendo (0.74 en L = 50). Es la saturación semiclásica (Berry 1985), debida a las órbitas periódicas más cortas (potencias de primos). Fórmula GUE usada: Σ²(L) = (ln 2πL + γ + 1)/π².
 
-Un preprint reciente (Alarcón 2026, **sin revisión por pares**) propone un ajuste numérico específico para `⟨r⟩(T)`; se menciona como referencia tentativa, **no** como fuente del mecanismo.
+### 3. Conteo tipo Turing (2.001.052 ceros, t hasta 1.13×10⁶)
 
-> **Comparación honesta:** estos ~5 000 ceros son modestos frente a los cientos de millones usados por Odlyzko. El valor del resultado no está en el tamaño de la muestra, sino en que **la comparación teórica es cerrada y la significancia es reproducible con el código incluido**.
+d_n = (n − ½) − N_suave(tₙ) ≈ S(tₙ).
 
----
+| | valor |
+|---|---|
+| media / desviación / máx. \|d\| | 0.000 / 0.332 / 1.33 |
+| media de d por bloque de 10⁵ ceros | ≈ 0 en todos |
+| control: borrar un cero a propósito | salto de −1.00 en la media local |
 
-## Galería de resultados
+Un cero perdido (o un par fuera de la línea) se vería como un escalón de −1 (o −2 o más). No hay escalones. Es una comprobación **numérica**; la rigurosa (aritmética de bolas y cotas de S(T)) es la de Platt–Trudgian (arXiv:2004.09765), que cubre hasta t ≈ 3×10¹².
 
-La teoría se sostiene en los datos, pero los datos se entienden mejor cuando se ven. Estas son las salidas generadas por el pipeline:
+### 4. Convergencia con la altura (bloques de 10⁵ ceros)
 
-| Trayectoria geométrica (Plotly) | Manuscrito y apéndice |
-|:---:|:---:|
-| <img src="assets/trayectoria_3d.jpg" width="400" alt="Trayectoria 3D y Z(t)"> | <img src="assets/manuscrito.jpg" width="400" alt="Manuscrito en el navegador"> |
-| *Visor interactivo: Trayectoria 3D de Γ(t), proyección 2D y la función Z(t) con los ceros marcados.* | *El ensayo y el apéndice matemático viven en `docs/manuscrito.md` y se pueden leer desde el navegador.* |
+| t medio | ⟨r⟩ | P(s<0.3) | corr |
+|---|---|---|---|
+| 4×10⁴ | 0.6109 | 2.11 % | −0.357 |
+| 1.1×10⁶ | 0.6056 | 2.45 % | −0.347 |
 
-## El Duelo: Orden Cuántico vs. Caos Aleatorio
+⟨r⟩ se acerca despacio a GUE. Ajuste heurístico ⟨r⟩ = r∞ + a/ln²(t/2π) sobre 20 bloques: r∞ = 0.5998 (GUE: 0.5996). El rango de ln t es corto y el rms no distingue exponentes, así que es sugerente, no concluyente. La correlación sale con asíntota ≈ −0.336, que no coincide con mi GUE simulado (−0.31): sin resolver.
 
-Para validar la estructura de los ceros de Riemann, el pipeline contrasta los **datos empíricos reales** (obtenidos del millón de ceros de Odlyzko) contra predicciones teóricas y simulaciones de azar puro.
+### 5. Estructura log-correlacionada (Selberg)
 
-### 1. Evidencia Cuantitativa: Distribución de Espaciados P(s)
-La distribución empírica (amarillo) se alinea perfectamente con la predicción de la Teoría de Matrices Aleatorias (GUE, azul), demostrando la "repulsión de niveles". El modelo sin correlación (Poisson, verde) queda categóricamente descartado.
+Var S(T) ≈ (1/2π²) ln ln T + cte; pendiente teórica 0.0507.
 
-<img src="assets/comparacion_2d.png" width="100%" alt="Distribución P(s) 2D">
+| origen | ln ln T | Var S | curtosis |
+|---|---|---|---|
+| t ≈ 10³ | 1.95 | 0.0728 | 2.57 |
+| t ≈ 10⁶ | 2.60 | 0.1125 | 2.77 |
+| ceros nº 10¹² | 3.27 | 0.1500 ± 0.0011 | 2.83 |
+| ceros nº 10²¹ | 3.84 | 0.1809 ± 0.0017 | 2.90 |
+| ceros nº 10²² | 3.89 | 0.1824 ± 0.0013 | 2.92 |
 
-### 2. Evidencia Geométrica: Inmersión de Takens 3D
-Al proyectar los espaciados en un espacio de fases tridimensional, la diferencia estructural es evidente. Los ceros de Riemann (izquierda) forman una "cúpula" con un vacío en el origen (repulsión). Una simulación de azar puro (derecha) colapsa contra el origen en una masa densa sin estructura.
-
-<img src="assets/comparacion_3d.png" width="100%" alt="Comparación 3D GUE vs Poisson">
----
-
-## Estructura del repositorio
-
-```text
-pulso_fractal_infinito/
-├── README.md                     ← este documento
-├── requirements.txt              ← dependencias Python
-├── docs/
-│   ├── manuscrito.md             ← ensayo + apéndice matemático (v0.3)
-│   └── manuscrito_v01.md         ← versión histórica v0.1
-├── assets/                       ← capturas para este README
-├── pfi01.py                      ← pipeline principal (ceros → trayectoria → métricas)
-├── pfi01_espectral.py            ← estadística RMT (P(s), ⟨r⟩, Δ₃)
-├── pfi01_downloads.py            ← descarga/verificación de ceros (Odlyzko)
-├── gen_traj_from_ceros.py        ← regenera trayectoria desde ceros.csv (sin tocar ζ)
-├── plot3d_html.py                ← 3 paneles Plotly (3D, 2D, Z(t))
-├── lab_controls.py               ← controles de P(s)
-├── lab_phase.py                  ← fase y curvatura
-├── lab_scaling.py                ← escalado entre corridas
-├── scripts/
-│   ├── setup_termux.sh           ← instalación en Android/Termux
-│   └── subir_github.sh           ← commit + push automatizado
-├── salida_pfi01_N300/            ← corridas (CSV) por escala
-├── salida_pfi01_N1000/
-├── salida_pfi01_N5000/           ← la que sostiene los hallazgos espectrales
-└── trayectoria_N{300,1000}.html  ← visualizaciones 3D/2D/Z(t)
-```
+Pendiente efectiva: 0.0608 en t ≤ 10⁶ y ≈ 0.053 ± 0.003 entre 10¹² y 10²², compatible con 0.0507 (convergencia lenta desde arriba; interpretación sin comprobar contra términos de corrección). Cada ventana de Odlyzko es una sola realización de 10⁴ ceros; los errores (bootstrap de bloques) pueden estar subestimados. Esto reproduce el comportamiento que Selberg demostró; no es un resultado nuevo.
 
 ---
 
-Instalación
+## Qué NO se sostiene (retirado en v0.4)
 
-Termux (Android)
+- **"Atractor extraño", D₂ ≈ 1.2256.** El número se reproduce, pero la pendiente local de C(r) cae de 1.76 a 0 sin zona de escalado, y barajar el orden de la sección de Poincaré da 1.2322. Además Γ(t) es analítica: su dimensión de caja a escala fina es 1, y cualquier valor intermedio es un cruce de resolución.
+- **Inmersión de Takens 3D ("red cósmica", "materia oscura").** D₂ ≈ 3 a escalas pequeñas para los ceros, GUE y espaciados barajados: no los distingue. El vacío cerca del origen es la repulsión de niveles que ya mide P(s).
+- **Prueba `pendiente % 1 != 0`** de `dimension_atractor.py`: vacía (cualquier flotante pasa).
+- **`salida_pfi01_N1000/controles.csv`:** la fila "zeros_reales" (⟨r⟩ = 0.9935) es un bug; los ceros dan ≈ 0.61.
+- **`ver_matrix.py` original** (matriz de correlación = `np.sinc(...)` fija, sin usar los datos) fue sustituido por la versión actual, que mide.
+
+---
+
+## Reproducibilidad
 
 ```bash
-pkg update && pkg upgrade
-pkg install python python-numpy git
-git clone https://github.com/mechmind-dwv/pulso_fractal_infinito.git
-cd pulso_fractal_infinito
-pip install -r requirements.txt
+cd analisis_avanzado
+python3 ver_matrix.py                                   # figura de 3 paneles -> matrix.html
+python3 turing_alturas.py ceros_2M.txt.gz 100000        # conteo + estadística por bloques
+python3 selberg.py ceros_2M.txt.gz                      # Var S vs ln ln T
+python3 selberg_alturas.py zeros3.txt zeros4.txt zeros5.txt   # ventanas a 10^12, 10^21, 10^22
 ```
 
-Nota crítica: en Termux, numpy no se instala con pip install numpy (compila y falla). El paquete correcto es python-numpy vía pkg, que provee binarios precompilados para aarch64.
-
-Linux / macOS
-
-```bash
-git clone https://github.com/mechmind-dwv/pulso_fractal_infinito.git
-cd pulso_fractal_infinito
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Verificación
-
-```bash
-python3 -c "import numpy, mpmath, plotly; print('OK')"
-python3 pfi01.py --help
-```
+Requisitos: `numpy`, `plotly`, `mpmath`. En Termux: `pkg install python-numpy` y `pip install plotly mpmath`.
 
 ---
 
-Uso del pipeline
+## Alcance y limitaciones
 
-Flujo completo (desde cero)
-
-```bash
-# 1. Calcular ceros, trayectoria y métricas geométricas
-python3 pfi01.py                        # N_ZEROS configurable en cabecera
-
-# 2. Estadística espectral (barata: no recalcula ζ)
-python3 pfi01_espectral.py 5000          # P(s) + ⟨r⟩
-python3 pfi01_espectral.py 5000 --delta3 # + Δ₃ / Σ²
-
-# 3. Visualización interactiva
-python3 plot3d_html.py 5000
-termux-open trayectoria_N5000.html      # o: xdg-open / open
-```
-
-Regenerar solo la trayectoria
-
-Si solo querés cambiar DPS o DENSIDAD_T sin volver a calcular ceros:
-
-```bash
-python3 gen_traj_from_ceros.py 5000
-```
-
-Laboratorios de control
-
-```bash
-python3 lab_controls.py                 # contraste P(s) empírico vs GUE vs Poisson
-python3 lab_phase.py                    # fase y curvatura de Γ(t)
-python3 lab_scaling.py 300 1000 5000    # comparación cruzada entre escalas
-```
+- Nada de esto demuestra ni refuta la Hipótesis de Riemann.
+- Los ceros de las tablas están en la línea crítica por construcción: un cero fuera de ella no aparecería en ellas. Lo que sí detecta el conteo es una lista incompleta.
+- Las ventanas a gran altura son una realización de 10⁴ ceros cada una.
+- La lectura geométrica de Γ(t) es descriptiva; no hay criterio de "fractalidad" que un cero pueda violar. La estructura multifractal genuina (momentos de |ζ|, exponente k² de Keating–Snaith) está pendiente de medir.
 
 ---
 
-Metodología
+## Referencias
 
-Normalización de espaciados
+Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bibliográficos.
 
-Con la densidad local de ceros ρ(t) ≈ (1/2π)·log(t/2π):
-
-```text
-s_n = (t_{n+1} − t_n) · ρ(t_n)
-```
-
-Razón de espaciados consecutivos (sin normalización)
-
-```text
-r_n = min(Δ_n, Δ_{n+1}) / max(Δ_n, Δ_{n+1}),    Δ_n = t_{n+1} − t_n
-```
-
-Valores asintóticos conocidos (Atas et al. 2013):
-
-· ⟨r⟩_GUE = 0.5996
-· ⟨r⟩_Poisson = 2·ln 2 − 1 ≈ 0.386
-
-Rigidez espectral de Dyson–Mehta
-
-```text
-Δ₃^GUE(L) ≈ [ ln(2πL) + γ − 5/4 ] / 2π²  ≈  [ ln L + 1.1651 ] / 2π²
-Δ₃^Poisson(L) = L / 15
-```
-
-Implementación verificada contra las tres fuentes independientes citadas en el apéndice del manuscrito. Los cuatro errores numéricos corregidos en v0.3 (dos de revisión externa, dos propios) están documentados en el historial.
+- Montgomery (1973), correlación de pares de los ceros.
+- Selberg (1946), distribución de S(T).
+- Berry (1985), *Semiclassical theory of spectral rigidity*, Proc. R. Soc. A 400, 229.
+- Bogomolny & Keating (1996), Nonlinearity 9, 911.
+- Bogomolny, Bohigas, Leboeuf & Monastra (2006), J. Phys. A 39, 10743.
+- Atas, Bogomolny, Giraud & Roux (2013), PRL 110, 084101.
+- Keating & Snaith (2000), Comm. Math. Phys. 214, 57; Fyodorov, Hiary & Keating (2012), PRL 108, 170601.
+- Platt & Trudgian (2021), [The Riemann hypothesis is true up to 3·10¹²](https://arxiv.org/pdf/2004.09765).
+- Odlyzko, [Tables of zeros of the Riemann zeta function](https://www-users.cse.umn.edu/~odlyzko/zeta_tables).
 
 ---
 
-Reproducibilidad
+## Historial de versiones
 
-Cada resultado del repositorio puede regenerarse bit a bit:
+**v0.4** — Estadística por altura hasta el cero nº 10²², conteo tipo Turing con control de borrado, Σ²(L) y saturación de Berry, test de Selberg. Se retiran el "atractor extraño" y la "red cósmica" tras controles negativos. Corrección propia: la fórmula teórica de Σ²(L) usaba la constante de GOE (−π²/8) en lugar de la de GUE; y el radio del semicírculo del *unfolding* de la primera simulación GUE era incorrecto.
 
-```bash
-# Reproducir desde cero en un contenedor limpio
-git clone https://github.com/mechmind-dwv/pulso_fractal_infinito.git
-cd pulso_fractal_infinito
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python3 pfi01.py
-python3 pfi01_espectral.py 5000 --delta3
-python3 plot3d_html.py 5000
-```
+**v0.3** — Estadística espectral con N = 5000; corrección de cuatro errores numéricos.
 
-Los CSV en salida_pfi01_N5000/ fueron generados con la versión v0.3 del pipeline. Cualquier divergencia entre una regeneración y los CSV versionados debe reportarse como issue.
+**v0.2 / v0.1** — Ver `docs/`.
 
 ---
 
-Alcance y limitaciones
+## Transparencia
 
-Este proyecto no demuestra ni refuta la Hipótesis de Riemann. Es importante que quien lo lea lo sepa antes de sacar conclusiones.
+Parte del análisis (controles, scripts de la v0.4 y revisión crítica) se desarrolló con asistencia de Claude (Anthropic). Todo número de este documento puede regenerarse con el código incluido.
 
-· La lectura geométrica (trayectoria, dimensión de caja, autocorrelación, entropía espectral) es descriptiva. La dimensión de caja depende de la resolución de muestreo y no tiene predicción teórica cerrada contra la cual comparar. pfi01.py y plot3d_html.py son instrumentación: generan datos y los dejan ver, no conclusiones.
-· La lectura espectral sí tiene comparación cerrada (GUE, Poisson). Con N=5000, las desviaciones son cuantificables en σ, pero modestas frente a la literatura estándar (Odlyzko usa cientos de millones de ceros).
-· La interpretación como corrección de altura finita (Bogomolny–Keating, Berry–Keating) es consistente en dirección y orden de magnitud, no una identificación mecanística demostrada con estos datos.
-· Hilbert–Pólya se discute como programa abierto, no como resultado. No se conoce tal operador; encontrarlo o descartarlo sigue siendo un problema abierto.
-
-Cualquier lectura que extraiga de este repositorio una afirmación más fuerte que «estos datos son consistentes con X, en dirección e intensidad» está fuera de lo que el código permite sostener.
-
----
-
-Referencias
-
-· Riemann, B. (1859). Über die Anzahl der Primzahlen unter einer gegebenen Grösse.
-· Montgomery, H. L. (1973). The pair correlation of zeros of the zeta function.
-· Odlyzko, A. M. Tables of zeros of the Riemann zeta function.
-· Bogomolny, E. B. & Keating, J. P. (1996). Random matrix theory and the Riemann zeros. Nonlinearity 9, 911.
-· Berry, M. V. & Keating, J. P. (1999). The Riemann zeros and eigenvalue asymptotics. SIAM Review 41, 236.
-· Atas, Y. Y., Bogomolny, E., Giraud, O. & Roux, G. (2013). Distribution of the ratio of consecutive level spacings in random matrix ensembles. PRL 110, 084101.
-· Alarcón, A. (2026). [Preprint sin revisión por pares sobre ⟨r⟩(T)]. Citado como referencia tentativa, no como fuente del mecanismo.
-
----
-
-Historial de versiones
-
-v0.3 — docs/manuscrito.md
-
-· Sección V con resultados espectrales de N=5000.
-· Creación de docs/ para que el ensayo viva junto al pipeline.
-· Corrección de cuatro errores numéricos:
-  · dos de revisión externa sin verificar (σ de ⟨r⟩ asumida en vez de medida, que inflaba la significancia a ~14σ; fórmula de Δ₃ con prefactor de GOE aplicado a GUE);
-  · dos propios en la primera implementación de Δ₃ (ajuste sobre muestras en vez de integral continua; división por L de más).
-· Ninguno de los cuatro se detectó por inspección: los cuatro salieron de recalcular con los datos en mano.
-
-v0.2 — pfi01.py
-
-· Resolución de trayectoria pasa de total fijo a densidad fija (puntos por unidad de t); el total fijo contaminaba comparaciones entre corridas con distinto N_ZEROS y dejaba el conteo de cajas sin puntos a ε chico.
-· Interpolación entre muestras antes de contar cajas.
-
-v0.1 → v0.2 — ensayo
-
-· Hilbert–Pólya: la hermiticidad fija la parte real en 1/2, no anula la parte imaginaria (error conceptual corregido).
-· Atractor / autosimilitud / «prohibición» topológica: reclasificados como hipótesis de trabajo, no hechos observados.
-
-plot3d_html.py v1.1
-
-· Panel de proyección 2D: markers → lines+markers. Sin línea, una espiral que vuelve sobre regiones parecidas del plano es indistinguible de ruido.
-
-salida_pfi01_N5000/gue_comparacion.csv
-
-· Primera entrega: solo encabezado (el análisis se hizo por consola y nunca se escribió a archivo). Corregido: ahora trae las 4999 filas.
-
----
-
-Cómo citar
-
-Si usas este pipeline o sus resultados, cita:
+## Cómo citar
 
 ```bibtex
 @misc{cabezaduran2026pfi01,
   author       = {Cabeza Durán, Benjamín},
-  title        = {El pulso fractal del infinito: una lectura geométrica y
-                  espectral de la Hipótesis de Riemann (PFI-01)},
+  title        = {El pulso fractal del infinito (PFI-01)},
   year         = {2026},
-  version      = {0.3},
-  howpublished = {\url{https://github.com/mechmind-dwv/pulso_fractal_infinito}},
-  note         = {Pipeline computacional abierto}
+  version      = {0.4},
+  howpublished = {\url{https://github.com/mechmind-dwv/pulso_fractal_infinito}}
 }
 ```
 
----
+## Licencia
 
-Licencia
-
-· Ensayo y textos (docs/): CC BY-NC 4.0
-· Código (.py): MIT
-· Datos (salida_*/**.csv): CC0 (dominio público)
-
----
-
-<div align="center">
-
-«La Hipótesis de Riemann no es solo un enunciado sobre primos: es una pregunta sobre la estructura del continuo.»
-
-</div>
+Ensayo y textos (`docs/`): CC BY-NC 4.0 · Código (`.py`): MIT · Datos generados (`salida_*/**.csv`): CC0. Las tablas de Odlyzko son de su autor.
