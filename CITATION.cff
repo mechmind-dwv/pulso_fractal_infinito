@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Si usas este software o los resultados del pipeline PFI-01 en tu investigación, por favor cita este repositorio."
+authors:
+  - family-names: "Cabeza Durán"
+    given-names: "Benjamín"
+title: "El pulso fractal del infinito: una lectura geométrica y espectral de la Hipótesis de Riemann (PFI-01)"
+version: 0.3
+date-released: 2026-11-22
+url: "https://github.com/mechmind-dwv/pulso_fractal_infinito"
+license: MIT
