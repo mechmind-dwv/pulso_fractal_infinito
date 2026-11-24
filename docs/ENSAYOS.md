@@ -63,3 +63,23 @@ Cada ensayo: pregunta, resultado frente a teoría, control, veredicto. Lo no ver
 - Sierra, arXiv:1601.01797: con H = xp la simetría temporal se rompe; no lo deriva de GUE.
 - Bender–Brody–Müller, arXiv:1608.03679: operador no hermitiano; realidad de autovalores heurística.
 - Bellissard, arXiv:1704.02644: objeta autoadjunción y pertenencia a L².
+
+## Ensayos añadidos después del registro inicial
+
+- **E13 — Correlación de pares de SYK.** R₂(x) de SYK N=22 frente a 1 − (sin πx/πx)²: RMS 0.020 (8
+  realizaciones). Control N=16 (GOE): RMS 0.089 y R₂(0.125) = 0.184 frente a 0.065. Misma clase GUE que los ceros.
+- **E14 — Aritmética necesaria para localizar los ceros** (carpeta `ensayo3_enteros_y_ceros/`). Con los primeros
+  M enteros de la suma de Riemann–Siegel, la fracción de ceros localizados pasa de ≈0.69 (M = N_RS/2) a 0.97–0.99
+  (M = ⌊√(t/2π)⌋) a alturas 1e4 y 6e4. Un ⟨r⟩ GUE-like aparece ya con M = 20 sin que los ceros estén bien situados.
+  Los picos en x = ln n están en los ceros reales (cociente ≥ 0.996 con la predicción de Weil) y no en un GUE de
+  igual densidad. Una ventana por altura; no se construye ningún operador.
+
+## Ensayos añadidos después del registro inicial
+
+- **E13 — Correlación de pares de SYK.** R₂(x) de SYK N=22 frente a 1 − (sin πx/πx)²: RMS 0.020 (8
+  realizaciones). Control N=16 (GOE): RMS 0.089 y R₂(0.125) = 0.184 frente a 0.065. Misma clase GUE que los ceros.
+- **E14 — Aritmética necesaria para localizar los ceros** (carpeta `ensayo3_enteros_y_ceros/`). Con los primeros
+  M enteros de la suma de Riemann–Siegel, la fracción de ceros localizados pasa de ≈0.69 (M = N_RS/2) a 0.97–0.99
+  (M = ⌊√(t/2π)⌋) a alturas 1e4 y 6e4. Un ⟨r⟩ GUE-like aparece ya con M = 20 sin que los ceros estén bien situados.
+  Los picos en x = ln n están en los ceros reales (cociente ≥ 0.996 con la predicción de Weil) y no en un GUE de
+  igual densidad. Una ventana por altura; no se construye ningún operador.
