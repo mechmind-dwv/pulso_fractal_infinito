@@ -1,24 +1,34 @@
 # analisis_avanzado
 
-Scripts de análisis sobre las tablas de ceros de Odlyzko (v0.4). Ejecutar desde esta carpeta.
+Scripts de análisis sobre las tablas de ceros de Odlyzko (v0.5). Ejecutar desde esta carpeta.
+Registro completo de ensayos, con resultados, controles y retractaciones: `../docs/ENSAYOS.md`.
 
-| Script | Qué hace |
-|---|---|
-| `ver_matrix.py` | P(s), Σ²(L) y R₂(x) de los ceros frente a GUE simulado, Poisson y Montgomery |
-| `turing_alturas.py` | Conteo tipo Turing (d_n ≈ S(T)) + control de borrado + estadística por bloques de altura |
-| `selberg.py` | Var S(T) y curtosis frente a ln ln T |
-| `selberg_alturas.py` | Lo mismo en las ventanas de 10⁴ ceros a 10¹², 10²¹ y 10²² (mpmath) |
-| `espectral_100k.py` | Histograma P(s) y ⟨r⟩ de los 100k ceros |
-| `ceros_100k.txt` | Primeros 100.000 ceros (Odlyzko) |
+| Script | Qué hace | Ensayo |
+|---|---|---|
+| `ver_matrix.py` | P(s), Σ²(L) y R₂(x) de los ceros frente a GUE simulado, Poisson y Montgomery | E01 |
+| `turing_alturas.py` | Conteo tipo Turing (d_n ≈ S(T)) con control de borrado | E02 |
+| `selberg.py`, `selberg_alturas.py` | Var S(T) y curtosis frente a ln ln T, hasta 10²² | E03 |
+| `momentos_zeta.py` | Momentos de \|ζ\| frente a Keating–Snaith (`validar` o `Tmax`) | E04 |
+| `momento4_polinomio.py` | Cuarto momento frente al polinomio de Ivić–Conrey | E04 |
+| `orbitas_primos.py` | Fórmula explícita: picos en x = ln n y factor de forma K(τ) | E05 |
+| `syk.py`, `stats_syk.py` | SYK q=4 (⟨r⟩, K(τ), P(s), Δ₃) frente a la clase RMT | E06 |
+| `xp_caja.py` | Hamiltoniano xp en una caja: peine rígido, no GUE | E11 |
+| `espectral_100k.py` | Histograma P(s) y ⟨r⟩ de los 100k ceros | E01 |
+
+Los ensayos E07 (reconstrucción de ψ(x)), E10 (Jacobi inverso) y E12 (positividad de Weil) se ejecutaron en la
+sesión de trabajo y sus scripts aún no están en el repo.
 
 ## Material exploratorio, sin respaldo estadístico
 
-`cazar_atractor.py`, `atractor_3d.py`, `atractor_masivo.py`, `atractor_normalizado.py`, `agujero_negro_real.py`, `red_cosmica.py`, `red_cosmica_1M.py`, `dimension_atractor.py`, `contraste_poisson.py`: visualizaciones del espacio de fases de Γ(t) y de la inmersión de Takens de los espaciados.
+`cazar_atractor.py`, `atractor_3d.py`, `atractor_masivo.py`, `atractor_normalizado.py`, `agujero_negro_real.py`,
+`red_cosmica.py`, `red_cosmica_1M.py`, `dimension_atractor.py`, `contraste_poisson.py`: visualizaciones del espacio
+de fases de Γ(t) y de la inmersión de Takens de los espaciados.
 
-**No** muestran un atractor ni una "red cósmica": con controles (espaciados barajados, GUE simulado) los resultados son indistinguibles. Se conservan como instrumentación visual. Detalle en el README principal, sección "Qué NO se sostiene".
+**No** muestran un atractor ni una "red cósmica": con controles (espaciados barajados, GUE simulado) los
+resultados son indistinguibles. Se conservan como instrumentación visual (E09).
 
-`criterio_li.py` y `criterio_li_1M.py` calculan los coeficientes de Keiper–Li fijando ρ = 1/2 + it. Con esa suposición cada término vale 1 − cos(nφ) ≥ 0, así que λₙ > 0 sale siempre: **no contrasta la Hipótesis de Riemann**. Solo sirven para comprobar la fórmula (λ₁ ≈ 0.0231).
+`criterio_li.py` y `criterio_li_1M.py`: el criterio de Li es circular cuando se impone ρ = 1/2 + it (E08).
 
 ## Datos
 
-Ver la sección "Datos" del README principal para las descargas.
+No se versionan. Ver la sección "Datos" del README principal para las descargas.
