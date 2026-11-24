@@ -83,3 +83,13 @@ Cada ensayo: pregunta, resultado frente a teoría, control, veredicto. Lo no ver
   (M = ⌊√(t/2π)⌋) a alturas 1e4 y 6e4. Un ⟨r⟩ GUE-like aparece ya con M = 20 sin que los ceros estén bien situados.
   Los picos en x = ln n están en los ceros reales (cociente ≥ 0.996 con la predicción de Weil) y no en un GUE de
   igual densidad. Una ventana por altura; no se construye ningún operador.
+- **E15 — GUE con primos metidos a mano** (`ensayo3_enteros_y_ceros/gue_con_primos.py`). Un GUE desplegado y
+  modulado con la serie de primos truncada (P = 1…200, peso de Fejér) reproduce los picos en x = ln n con la
+  amplitud de la fórmula explícita (dentro del ruido), pero ⟨r⟩ baja de 0.599 a 0.580 (ceros: 0.612) y |S| en x
+  genéricos se queda en ≈ 2.6 frente a 0.01 de los ceros. Estadística local GUE más picos en los primos no
+  caracterizan los ceros. Una construcción, una ventana.
+- **E15 — GUE con primos metidos a mano** (`ensayo3_enteros_y_ceros/gue_con_primos.py`). Un GUE desplegado y
+  modulado con la serie de primos truncada (P = 1…200, peso de Fejér) reproduce los picos en x = ln n con la
+  amplitud de la fórmula explícita (dentro del ruido), pero ⟨r⟩ baja de 0.599 a 0.580 (ceros: 0.612) y |S| en x
+  genéricos se queda en ≈ 2.6 frente a 0.01 de los ceros. Estadística local GUE más picos en los primos no
+  caracterizan los ceros. Una construcción, una ventana.

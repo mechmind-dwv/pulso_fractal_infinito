@@ -76,3 +76,49 @@ Control con 23 valores genéricos de x: |S| típico 0.01 (ceros) frente a 2.17 y
 Una matriz cuyo espectro reproduzca a la vez las trazas Σ ln p/√p y la estadística GUE sigue abierta. Una
 versión medible: ajustar los parámetros de un ensemble para que S(x) tenga picos en ln p y comprobar si ⟨r⟩ y Δ₃
 se mantienen.
+
+## Parte C — GUE con los primos metidos a mano (E15)
+
+`gue_con_primos.py`. Pregunta: si a un GUE se le impone la señal de los primos, ¿se obtienen los ceros?
+Se desplegan niveles GUE (u) y se llevan a t = N_mod⁻¹(u), con N_mod(t) = N_suave(t) + S_P(t) y
+S_P(t) = −(1/π) Σ_{n≤P} w_n Λ(n)/(√n ln n) sin(t ln n), con peso de Fejér w_n = 1 − ln n/ln(P+1).
+Mismas 8 realizaciones GUE en todas las filas (T0 = 40 000, σ = 100, 837 niveles). Los ceros reales dan
+⟨r⟩ = 0.6122, picos −19.51, −25.24, −28.66, −29.28 (n = 2, 3, 5, 7) y |S| genérico 0.01.
+
+| P | ⟨r⟩ | S(2) | S(3) | S(5) | S(7) | \|S\| genérico |
+|---|---|---|---|---|---|---|
+| 1 (GUE puro) | 0.5991 ± 0.0032 | −0.11 | 0.50 | 2.03 | −0.64 | 2.62 |
+| 13 | 0.5965 ± 0.0031 | −14.59 | −14.72 | −9.50 | −8.56 | 2.62 |
+| 50 | 0.5906 ± 0.0029 | −16.30 | −18.17 | −15.35 | −15.81 | 2.70 |
+| 200 | 0.5800 ± 0.0026 | −17.18 | −20.00 | −18.46 | −19.74 | 2.68 |
+
+Lectura: (1) los picos aparecen con la amplitud de la fórmula explícita (con el peso de Fejér, dentro de ±2 de
+ruido). (2) A medida que se meten más primos, ⟨r⟩ **baja** de 0.599 a 0.580 en vez de acercarse al 0.612 de los
+ceros: la modulación lisa no es la manera en que los primos entran en las fluctuaciones. (3) El nivel de |S| en x
+genéricos no cambia (≈ 2.6), frente a 0.01 en los ceros: el factor ~260 es el "silencio" entre los picos, que en los
+ceros es una identidad exacta y en un GUE con primos añadidos no aparece. Estadística local GUE más picos en los
+primos no bastan para caracterizar a los ceros. Limitaciones: una construcción concreta (modulación de la densidad
+con peso de Fejér), una ventana, un tamaño de GUE.
+
+## Parte C — GUE con los primos metidos a mano (E15)
+
+`gue_con_primos.py`. Pregunta: si a un GUE se le impone la señal de los primos, ¿se obtienen los ceros?
+Se desplegan niveles GUE (u) y se llevan a t = N_mod⁻¹(u), con N_mod(t) = N_suave(t) + S_P(t) y
+S_P(t) = −(1/π) Σ_{n≤P} w_n Λ(n)/(√n ln n) sin(t ln n), con peso de Fejér w_n = 1 − ln n/ln(P+1).
+Mismas 8 realizaciones GUE en todas las filas (T0 = 40 000, σ = 100, 837 niveles). Los ceros reales dan
+⟨r⟩ = 0.6122, picos −19.51, −25.24, −28.66, −29.28 (n = 2, 3, 5, 7) y |S| genérico 0.01.
+
+| P | ⟨r⟩ | S(2) | S(3) | S(5) | S(7) | \|S\| genérico |
+|---|---|---|---|---|---|---|
+| 1 (GUE puro) | 0.5991 ± 0.0032 | −0.11 | 0.50 | 2.03 | −0.64 | 2.62 |
+| 13 | 0.5965 ± 0.0031 | −14.59 | −14.72 | −9.50 | −8.56 | 2.62 |
+| 50 | 0.5906 ± 0.0029 | −16.30 | −18.17 | −15.35 | −15.81 | 2.70 |
+| 200 | 0.5800 ± 0.0026 | −17.18 | −20.00 | −18.46 | −19.74 | 2.68 |
+
+Lectura: (1) los picos aparecen con la amplitud de la fórmula explícita (con el peso de Fejér, dentro de ±2 de
+ruido). (2) A medida que se meten más primos, ⟨r⟩ **baja** de 0.599 a 0.580 en vez de acercarse al 0.612 de los
+ceros: la modulación lisa no es la manera en que los primos entran en las fluctuaciones. (3) El nivel de |S| en x
+genéricos no cambia (≈ 2.6), frente a 0.01 en los ceros: el factor ~260 es el "silencio" entre los picos, que en los
+ceros es una identidad exacta y en un GUE con primos añadidos no aparece. Estadística local GUE más picos en los
+primos no bastan para caracterizar a los ceros. Limitaciones: una construcción concreta (modulación de la densidad
+con peso de Fejér), una ventana, un tamaño de GUE.

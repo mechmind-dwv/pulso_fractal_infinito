@@ -12,6 +12,9 @@ D=../analisis_avanzado/ceros_100k.txt
   echo
   echo "=== Parte B: picos de primos, ceros reales frente a GUE de igual densidad ==="
   python3 contraste_trazas.py "$D" 40000 400
+  echo
+  echo "=== Parte C: GUE con los primos metidos a mano (hasta P) ==="
+  python3 gue_con_primos.py "$D" 40000 400 8
 } | tee resultados.txt
 echo
 echo "Salida guardada en resultados.txt"
