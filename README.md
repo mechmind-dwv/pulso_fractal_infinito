@@ -213,6 +213,8 @@ Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bib
 
 **v0.5** — Del «qué» al «cómo»: ensayos E10–E18 (SYK, xp en caja, Jacobi inverso, positividad de Weil, ψ(x) desde los ceros, enteros→ceros, GUE con primos, Riemann–Siegel con C₀). Resultados negativos documentados. Correcciones propias: ruido de K(τ) en SYK, estimación errónea de |S| en Riemann–Siegel, cociente 1.971 de E18. Se añade una nota neutral sobre la prueba en Lean anunciada el 20 nov 2026.
 
+**v0.5** — Del «qué» al «cómo»: ensayos E10–E18 (SYK, xp en caja, Jacobi inverso, positividad de Weil, ψ(x) desde los ceros, enteros→ceros, GUE con primos, Riemann–Siegel con C₀). Resultados negativos documentados. Correcciones propias: ruido de K(τ) en SYK, estimación errónea de |S| en Riemann–Siegel, cociente 1.971 de E18. Se añade una nota neutral sobre la prueba en Lean anunciada el 20 nov 2026.
+
 **v0.4** — Estadística por altura hasta el cero nº 10²², conteo tipo Turing con control de borrado, Σ²(L) y saturación de Berry, test de Selberg. Se retiran el "atractor extraño" y la "red cósmica" tras controles negativos. Corrección propia: la fórmula teórica de Σ²(L) usaba la constante de GOE (−π²/8) en lugar de la de GUE; y el radio del semicírculo del *unfolding* de la primera simulación GUE era incorrecto.
 
 **v0.3** — Estadística espectral con N = 5000; corrección de cuatro errores numéricos.
