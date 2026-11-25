@@ -122,3 +122,14 @@ genéricos no cambia (≈ 2.6), frente a 0.01 en los ceros: el factor ~260 es el
 ceros es una identidad exacta y en un GUE con primos añadidos no aparece. Estadística local GUE más picos en los
 primos no bastan para caracterizar a los ceros. Limitaciones: una construcción concreta (modulación de la densidad
 con peso de Fejér), una ventana, un tamaño de GUE.
+
+## Parte D — El "silencio" como medida de precisión de posición (E16)
+
+`silencio.py`. El |S(x)| en x genéricos (lejos de ln n) vale 0.014 en los ceros reales. Desplazando cada cero con
+un ruido gaussiano de ε espaciados, |S| sube así: 0.017 (ε = 10⁻³), 0.060 (10⁻²), 0.144 (3·10⁻²), 0.512 (0.1),
+1.399 (0.3), 2.112 (0.4); los picos en ln n casi no cambian. Un GUE con primos (E15, |S| ≈ 2.6) equivale a conocer
+cada nivel con un error de ≈ 40 % del espaciado. Los ceros de la suma de Riemann–Siegel (solo término principal,
+sin correcciones) a T0 = 40 000 dan: M = 20 → 1.85; M = N_RS = 79 → 1.40 (error rms 0.115 espaciados);
+M = 118 → 6.33. Hay variación de ~20 % entre repeticiones de la tabla de ε (5 repeticiones).
+Lectura: el silencio mide la precisión de las posiciones y es la parte de la identidad exacta que ni la
+estadística ni los picos capturan. No se ha probado con la suma de Riemann–Siegel completa (con correcciones).

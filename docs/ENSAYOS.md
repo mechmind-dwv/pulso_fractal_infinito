@@ -93,3 +93,7 @@ Cada ensayo: pregunta, resultado frente a teoría, control, veredicto. Lo no ver
   amplitud de la fórmula explícita (dentro del ruido), pero ⟨r⟩ baja de 0.599 a 0.580 (ceros: 0.612) y |S| en x
   genéricos se queda en ≈ 2.6 frente a 0.01 de los ceros. Estadística local GUE más picos en los primos no
   caracterizan los ceros. Una construcción, una ventana.
+- **E16 — El silencio como precisión de posición** (`ensayo3_enteros_y_ceros/silencio.py`). |S| en x genéricos:
+  0.014 en los ceros reales; con ruido de posición ε espaciados sube a 0.06 (ε = 10⁻²), 0.51 (0.1) y 2.1 (0.4),
+  mientras los picos apenas cambian. Ceros de la suma de Riemann–Siegel principal: 1.40 con M = N_RS (79) frente
+  a 0.014. Un modelo que reproduzca el silencio ha de fijar cada cero a mucho menos del 1 % de un espaciado.
