@@ -19,6 +19,7 @@ Registro completo de ensayos, con resultados, controles y retractaciones: `../do
 | `weil_positividad.py` | Matriz de Weil con gaussianas, solo primos frente a ceros, y control sintético | E12 |
 | `jacobi_inverso.py` | Matriz de Jacobi (Lanczos, 250 dígitos) desde 80 ceros frente a GUE | E10 |
 | `neff_cue.py` | Ceros frente a CUE de tamaño efectivo N_eff (Bogomolny et al. 2006) | E19 |
+| `r2_bk.py` | R₂(s) de los ceros frente a GUE y a la primera corrección de Bogomolny–Keating; amplitud según la altura | E20 |
 
 ## Material exploratorio, sin respaldo estadístico
 
