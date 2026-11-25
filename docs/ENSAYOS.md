@@ -97,3 +97,11 @@ Cada ensayo: pregunta, resultado frente a teoría, control, veredicto. Lo no ver
   0.014 en los ceros reales; con ruido de posición ε espaciados sube a 0.06 (ε = 10⁻²), 0.51 (0.1) y 2.1 (0.4),
   mientras los picos apenas cambian. Ceros de la suma de Riemann–Siegel principal: 1.40 con M = N_RS (79) frente
   a 0.014. Un modelo que reproduzca el silencio ha de fijar cada cero a mucho menos del 1 % de un espaciado.
+- **E17 — Riemann–Siegel completa** (`ensayo3_enteros_y_ceros/rs_completa.py`). Con N = ⌊√(t/2π)⌋ términos y la
+  corrección C₀ se localizan todos los ceros de las ventanas T0 = 5 000, 40 000 y 70 000 con error máximo
+  1.5·10⁻⁴, 4.6·10⁻⁵ y 3.3·10⁻⁵ espaciados, y el silencio |S| coincide con el de los ceros reales (0.010–0.014).
+  Sin C₀: 2–12 ceros perdidos y |S| = 0.7–1.4. Propiedad conocida de ζ, cuantificada con la métrica de E16.
+- **E17 — Riemann–Siegel completa** (`ensayo3_enteros_y_ceros/rs_completa.py`). Con N = ⌊√(t/2π)⌋ términos y la
+  corrección C₀ se localizan todos los ceros de las ventanas T0 = 5 000, 40 000 y 70 000 con error máximo
+  1.5·10⁻⁴, 4.6·10⁻⁵ y 3.3·10⁻⁵ espaciados, y el silencio |S| coincide con el de los ceros reales (0.010–0.014).
+  Sin C₀: 2–12 ceros perdidos y |S| = 0.7–1.4. Propiedad conocida de ζ, cuantificada con la métrica de E16.

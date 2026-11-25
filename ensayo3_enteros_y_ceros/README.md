@@ -133,3 +133,37 @@ sin correcciones) a T0 = 40 000 dan: M = 20 → 1.85; M = N_RS = 79 → 1.40 (er
 M = 118 → 6.33. Hay variación de ~20 % entre repeticiones de la tabla de ε (5 repeticiones).
 Lectura: el silencio mide la precisión de las posiciones y es la parte de la identidad exacta que ni la
 estadística ni los picos capturan. No se ha probado con la suma de Riemann–Siegel completa (con correcciones).
+
+## Parte E — Riemann–Siegel completa: la identidad que da el silencio (E17)
+
+`rs_completa.py`. Z(t) por Riemann–Siegel con N = ⌊√(t/2π)⌋ términos más la corrección C₀, raíces por interpolación
+lineal (rejilla de 0.002), ventanas σ = 100. Error de posición en espaciados (mediano / máximo):
+
+| T0 | ceros | solo suma principal: \|S\| genérico, ceros perdidos | suma + C₀: error mediano / máximo | \|S\| genérico (reales) |
+|---|---|---|---|---|
+| 5 000 | 638 | 1.39, 8 | 9.3·10⁻⁶ / 1.5·10⁻⁴ | 0.010 (0.010) |
+| 40 000 | 837 | 1.20, 12 | 2.5·10⁻⁶ / 4.6·10⁻⁵ | 0.014 (0.014) |
+| 70 000 | 891 | 0.70, 2 | 1.5·10⁻⁶ / 3.3·10⁻⁵ | 0.012 (0.012) |
+
+Con C₀ se encuentran todos los ceros, el silencio es el de los ceros reales y los picos coinciden (−19.51 y −28.66
+en ln 2 y ln 5 a T0 = 40 000). Sin C₀ hay ceros perdidos y errores de hasta 1.7 espaciados. Las posiciones de unos
+840 ceros quedan fijadas por 79 enteros y una corrección. Es una propiedad conocida de ζ (Riemann–Siegel); aquí se
+cuantifica con la métrica de E16. No es un hallazgo nuevo ni dice nada sobre un operador: dice que cualquier modelo
+debe contener esa información aritmética. Limitaciones: tres ventanas, interpolación lineal de las raíces.
+
+## Parte E — Riemann–Siegel completa: la identidad que da el silencio (E17)
+
+`rs_completa.py`. Z(t) por Riemann–Siegel con N = ⌊√(t/2π)⌋ términos más la corrección C₀, raíces por interpolación
+lineal (rejilla de 0.002), ventanas σ = 100. Error de posición en espaciados (mediano / máximo):
+
+| T0 | ceros | solo suma principal: \|S\| genérico, ceros perdidos | suma + C₀: error mediano / máximo | \|S\| genérico (reales) |
+|---|---|---|---|---|
+| 5 000 | 638 | 1.39, 8 | 9.3·10⁻⁶ / 1.5·10⁻⁴ | 0.010 (0.010) |
+| 40 000 | 837 | 1.20, 12 | 2.5·10⁻⁶ / 4.6·10⁻⁵ | 0.014 (0.014) |
+| 70 000 | 891 | 0.70, 2 | 1.5·10⁻⁶ / 3.3·10⁻⁵ | 0.012 (0.012) |
+
+Con C₀ se encuentran todos los ceros, el silencio es el de los ceros reales y los picos coinciden (−19.51 y −28.66
+en ln 2 y ln 5 a T0 = 40 000). Sin C₀ hay ceros perdidos y errores de hasta 1.7 espaciados. Las posiciones de unos
+840 ceros quedan fijadas por 79 enteros y una corrección. Es una propiedad conocida de ζ (Riemann–Siegel); aquí se
+cuantifica con la métrica de E16. No es un hallazgo nuevo ni dice nada sobre un operador: dice que cualquier modelo
+debe contener esa información aritmética. Limitaciones: tres ventanas, interpolación lineal de las raíces.
