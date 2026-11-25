@@ -14,7 +14,6 @@ Registro completo de ensayos, con resultados, controles y retractaciones: `../do
 | `syk.py`, `stats_syk.py` | SYK q=4 (⟨r⟩, K(τ), P(s), Δ₃) frente a la clase RMT | E06 |
 | `xp_caja.py` | Hamiltoniano xp en una caja: peine rígido, no GUE | E11 |
 | `espectral_100k.py` | Histograma P(s) y ⟨r⟩ de los 100k ceros | E01 |
-
 | `psi_desde_ceros.py` | Reconstrucción de ψ(x) con K ceros (fórmula explícita) y control con γ al azar | E07 |
 | `psi_escalada.py`, `barrido_K.py` | (ψ(x) − x)/√x hasta 10⁷ frente a la reconstrucción y a la cota condicional a RH; RMS según K | E18 |
 | `weil_positividad.py` | Matriz de Weil con gaussianas, solo primos frente a ceros, y control sintético | E12 |
