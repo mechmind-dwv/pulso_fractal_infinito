@@ -20,7 +20,7 @@ Un **pipeline computacional abierto** que mide la estructura estadística de los
 
 ---
 
-## Novedades de la v0.5: del «qué» al «cómo» (ensayos E10–E18)
+## Novedades de la v0.5: del «qué» al «cómo» (ensayos E10–E19)
 
 Los ceros ya están medidos; aquí se pregunta de dónde sale esa estructura. Cada ensayo lleva dato, teoría exacta y un control. Detalle en `docs/ENSAYOS.md`, `ensayo3_enteros_y_ceros/README.md` y `analisis_avanzado/README.md`.
 
@@ -34,7 +34,8 @@ Los ceros ya están medidos; aquí se pregunta de dónde sale esa estructura. Ca
 | Enteros → ceros (`ensayo3_enteros_y_ceros/`) | Con M = N_RS = ⌊√(t/2π)⌋ enteros se fijan el 96.8 % de los ceros a t = 10⁴ | Positivo |
 | GUE + primos insertados | Falla: ⟨r⟩ baja a 0.580 y el «silencio» de la suma sobre ceros es 2.68 frente a 0.01 en los ceros reales | Negativo |
 | Riemann–Siegel con C₀ | Reproduce las posiciones de los ceros a ≲ 1.5×10⁻⁴ espaciados y el silencio (0.010–0.014, igual que los reales). Propiedad conocida, aquí cuantificada | Positivo |
-| E18: x^(−1/2)(ψ(x) − x) hasta 10⁷ | Ver abajo | Positivo |
+| E18: x^(−1/2)(ψ(x) − x) hasta 10⁷ | Ver abajo. Barrido en K: RMS 0.078 (100 ceros) → 0.002 (10⁶ ceros) | Positivo |
+| E19: ceros frente a CUE de tamaño efectivo | La correlación de espaciados a 10¹²–10²² sigue a CUE(N_eff) (Bogomolny et al. 2006) y tiende a GUE; no explica el ⟨r⟩ alto a t bajo | Parcial |
 
 ### E18. La oscilación de los primos con 100 ceros
 
@@ -132,7 +133,7 @@ Un cero perdido (o un par fuera de la línea) se vería como un escalón de −1
 | 4×10⁴ | 0.6109 | 2.11 % | −0.357 |
 | 1.1×10⁶ | 0.6056 | 2.45 % | −0.347 |
 
-⟨r⟩ se acerca despacio a GUE. Ajuste heurístico ⟨r⟩ = r∞ + a/ln²(t/2π) sobre 20 bloques: r∞ = 0.5998 (GUE: 0.5996). El rango de ln t es corto y el rms no distingue exponentes, así que es sugerente, no concluyente. La correlación sale con asíntota ≈ −0.336, que no coincide con mi GUE simulado (−0.31): sin resolver.
+⟨r⟩ se acerca despacio a GUE. Ajuste heurístico ⟨r⟩ = r∞ + a/ln²(t/2π) sobre 20 bloques: r∞ = 0.5998 (GUE: 0.5996). El rango de ln t es corto y el rms no distingue exponentes, así que es sugerente, no concluyente. La «asíntota −0.336» salía de extrapolar bloques de t ≤ 10⁶, un rango demasiado corto: a 10¹², 10²¹ y 10²² la correlación mide −0.332 ± 0.008, −0.317 ± 0.009 y −0.305 ± 0.011, compatible con CUE de tamaño efectivo N_eff = ln(E/2π)/√(12Λ), Λ = 1.57314 (Bogomolny–Bohigas–Leboeuf–Monastra 2006, arXiv:math/0602270), que tiende a −0.308 (GUE). A t bajo esa fórmula (N_eff ≈ 2–3) no se aplica, y el exceso de ⟨r⟩ sobre GUE (0.6109 a 4×10⁴) **sigue sin explicar**: el ⟨r⟩ de CUE casi no depende de N. Ver `analisis_avanzado/neff_cue.py` (E19). Una ventana de 10⁴ ceros por altura.
 
 ### 5. Estructura log-correlacionada (Selberg)
 
@@ -167,6 +168,11 @@ Los ensayos nuevos se ejecutan así (los scripts de ψ(x) están en `analisis_av
 ```bash
 cd analisis_avanzado
 python3 psi_escalada.py 1e7 ceros_100k.txt 100   # E18 -> psi_escalada.png
+python3 barrido_K.py ceros_100k.txt 1e7 100000    # E18, RMS segun K (con ceros_1millon.txt y 1000000: ~30 min en movil)
+python3 neff_cue.py .                             # E19: ceros frente a CUE(N_eff)
+python3 psi_desde_ceros.py ceros_100k.txt         # E07
+python3 weil_positividad.py ceros_100k.txt 3 6    # E12
+python3 jacobi_inverso.py 80 ceros_100k.txt       # E10
 cd ../ensayo3_enteros_y_ceros && bash run_all.sh
 ```
 
@@ -201,7 +207,7 @@ Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bib
 - Selberg (1946), distribución de S(T).
 - Berry (1985), *Semiclassical theory of spectral rigidity*, Proc. R. Soc. A 400, 229.
 - Bogomolny & Keating (1996), Nonlinearity 9, 911.
-- Bogomolny, Bohigas, Leboeuf & Monastra (2006), J. Phys. A 39, 10743.
+- Bogomolny, Bohigas, Leboeuf & Monastra (2006), [On the spacing distribution of the Riemann zeros: corrections to the asymptotic result](https://arxiv.org/abs/math/0602270), J. Phys. A 39, 10743.
 - Atas, Bogomolny, Giraud & Roux (2013), PRL 110, 084101.
 - Keating & Snaith (2000), Comm. Math. Phys. 214, 57; Fyodorov, Hiary & Keating (2012), PRL 108, 170601.
 - Platt & Trudgian (2021), [The Riemann hypothesis is true up to 3·10¹²](https://arxiv.org/pdf/2004.09765).
@@ -211,9 +217,7 @@ Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bib
 
 ## Historial de versiones
 
-**v0.5** — Del «qué» al «cómo»: ensayos E10–E18 (SYK, xp en caja, Jacobi inverso, positividad de Weil, ψ(x) desde los ceros, enteros→ceros, GUE con primos, Riemann–Siegel con C₀). Resultados negativos documentados. Correcciones propias: ruido de K(τ) en SYK, estimación errónea de |S| en Riemann–Siegel, cociente 1.971 de E18. Se añade una nota neutral sobre la prueba en Lean anunciada el 20 nov 2026.
-
-**v0.5** — Del «qué» al «cómo»: ensayos E10–E18 (SYK, xp en caja, Jacobi inverso, positividad de Weil, ψ(x) desde los ceros, enteros→ceros, GUE con primos, Riemann–Siegel con C₀). Resultados negativos documentados. Correcciones propias: ruido de K(τ) en SYK, estimación errónea de |S| en Riemann–Siegel, cociente 1.971 de E18. Se añade una nota neutral sobre la prueba en Lean anunciada el 20 nov 2026.
+**v0.5** — Del «qué» al «cómo»: ensayos E10–E19 (SYK, xp en caja, Jacobi inverso, positividad de Weil, ψ(x) desde los ceros, enteros→ceros, GUE con primos, Riemann–Siegel con C₀). Resultados negativos documentados. Correcciones propias: ruido de K(τ) en SYK, estimación errónea de |S| en Riemann–Siegel, cociente 1.971 de E18. Se añade una nota neutral sobre la prueba en Lean anunciada el 20 nov 2026.
 
 **v0.4** — Estadística por altura hasta el cero nº 10²², conteo tipo Turing con control de borrado, Σ²(L) y saturación de Berry, test de Selberg. Se retiran el "atractor extraño" y la "red cósmica" tras controles negativos. Corrección propia: la fórmula teórica de Σ²(L) usaba la constante de GOE (−π²/8) en lugar de la de GUE; y el radio del semicírculo del *unfolding* de la primera simulación GUE era incorrecto.
 
