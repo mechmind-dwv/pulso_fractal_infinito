@@ -4,7 +4,7 @@
 
 ### Una lectura geométrica y espectral de la Hipótesis de Riemann
 
-**PFI-01** · Programa de investigación computacional · **v0.8**
+**PFI-01** · Programa de investigación computacional · **v0.9**
 
 *Benjamín Cabeza Durán*
 
@@ -92,6 +92,21 @@ Reproducido de forma idéntica en dos máquinas (la mía y Termux), tanto X = 13
 | Control: relación plantada 3γ₁ − 2γ₂ + 5γ₃ − γₖ = 0 | Recuperada exacta |
 
 Resultado nulo y esperado: matroide libre dentro del alcance del método (≈ 8–12 términos, coeficientes ≤ 10⁴–10⁵). No prueba LI. Reproducido en dos máquinas. Corrección propia: el primer control al azar usaba reales de 53 bits, que sí tienen relación entera.
+
+---
+
+### E25. Grafo cuántico con longitudes ln p: GUE por simetría, no por aritmética
+
+`grafo_controles.py` (numpy). Grafo completo K₆ con aristas de longitud ln p (primeros 15 primos) y dispersión de Haar en cada vértice. Niveles = ceros exactos de f(k) = ∏ sen(θⱼ/2), con el recuento validado contra la ley de Weyl (cociente 1.000).
+
+| Longitudes de arista | ⟨r⟩ (40 realizaciones, k ≤ 60) |
+|---|---|
+| ln p (primos) | 0.6004 ± 0.0017 |
+| Al azar, misma media | 0.5990 ± 0.0016 |
+| ln n, n = 2..16 (dependientes) | 0.6000 ± 0.0017 |
+| ln p con S simétrica (TRS intacta) | 0.5310 ± 0.0014 |
+
+Referencias: GUE 0.5996, GOE 0.5307. La clase la fija la simetría de la matriz de dispersión, no que las longitudes sean ln p. Misma conclusión que E06 y E13: misma clase estadística, no origen. Resultado nulo y esperado (grafos con simetría temporal rota dan GUE). Reproducido en dos máquinas. Tres scripts previos de grafos se descartaron por falta de control y de validación del recuento de niveles.
 
 ---
 
@@ -211,6 +226,11 @@ python3 neff_cue.py .                             # E19: ceros frente a CUE(N_ef
 python3 r2_bk.py .                                # E20: BK a primer orden
 python3 bk_completa.py .                          # E21: BK completa (usa mpmath)
 python3 pico_tau1.py ceros_1millon.txt            # E22: pico en tau = 1
+python3 connes_zst.py 13 40 ceros_100k.txt   # E23 (doble precision)
+python3 connes_mp.py 13 40 120                # E23 (mpmath, ~1 min)
+python3 connes_mp.py 30 60 150                # E23 con X = 30 (~3 min en movil)
+python3 matroide_li.py 60 8 80 100000         # E24
+python3 grafo_controles.py 6 60 40            # E25 (~1-3 min)
 python3 psi_desde_ceros.py ceros_100k.txt         # E07
 python3 weil_positividad.py ceros_100k.txt 3 6    # E12
 python3 jacobi_inverso.py 80 ceros_100k.txt       # E10
@@ -258,6 +278,8 @@ Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bib
 
 ## Historial de versiones
 
+**v0.9** — E25: grafo cuántico con longitudes ln p; GUE o GOE según la simetría de la dispersión, igual con primos que con longitudes al azar (`grafo_controles.py`).
+
 **v0.8** — E24: el matroide de dependencia racional de los ceros resulta libre dentro del alcance del método (`matroide_li.py`); E23 ampliado a X = 30 en precisión múltiple.
 
 **v0.7** — E23: los ceros de Riemann reproducidos desde la forma de Weil con primos ≤ 13 (`connes_zst.py`, `connes_mp.py`).
@@ -285,7 +307,7 @@ Parte del análisis (controles, scripts de las v0.4 y v0.5 y revisión crítica)
   author       = {Cabeza Durán, Benjamín},
   title        = {El pulso fractal del infinito (PFI-01)},
   year         = {2026},
-  version      = {0.8},
+  version      = {0.9},
   howpublished = {\url{https://github.com/mechmind-dwv/pulso_fractal_infinito}}
 }
 ```
