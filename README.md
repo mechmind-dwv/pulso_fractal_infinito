@@ -68,11 +68,12 @@ Una nota de método: una primera ejecución dio un cociente 1.971 contra ln²x/8
 |---|---|
 | X = 13, N = 40, doble precisión | 34–35 raíces según la máquina; 21–22 ceros a < 10⁻⁶; algunas raíces espurias |
 | X = 13, N = 40, 120 dígitos (`connes_mp.py 13 40 120`) | 28 raíces en (0, 97), **todas** ceros de Riemann, 0 espurias; 27 de 28 a < 10⁻⁶; 10 a < 10⁻³⁰ |
+| X = 30, N = 60, 150 dígitos (`connes_mp.py 30 60 150`, ~70–210 s) | 33 raíces en (0, 110), **todas** ceros de Riemann, 0 espurias; los 33 a < 10⁻⁶ y 30 a < 10⁻³⁰ (6×10⁻⁹⁵ en el primero, 5×10⁻³² en el 30.º) |
 | Precisión por cero (mpmath) | 7×10⁻⁵⁰ (k=1), 4.5×10⁻²⁸ (k=12), 5.6×10⁻¹⁷ (k=20), 3.8×10⁻¹¹ (k=25), 1.6×10⁻⁶ (k=28) |
 | Menores autovalores de QW | 9.5×10⁻⁵⁴, 7.7×10⁻⁴⁷, 1.5×10⁻⁴⁰, … (a 10⁻¹³ la doble precisión no los separa del ruido) |
 | Control (`connes_zst.py … control`) | Falla |
 
-Reproducido de forma idéntica en dos máquinas (la mía y Termux). **Alcance:** es mi ruta de cálculo (raíces de la función racional), no el operador con perturbación de rango uno del artículo (arXiv:2511.22755); no he verificado su Teorema 1.1 ni la autoadjunción, ni comparado con su sección numérica. El artículo es una reformulación de RH, no una prueba. Las fórmulas se copiaron de una versión HTML parcial.
+Reproducido de forma idéntica en dos máquinas (la mía y Termux), tanto X = 13 como X = 30. **Alcance:** es mi ruta de cálculo (raíces de la función racional), no el operador con perturbación de rango uno del artículo (arXiv:2511.22755); no he verificado su Teorema 1.1 ni la autoadjunción, ni comparado con su sección numérica. El artículo es una reformulación de RH, no una prueba. Las fórmulas se copiaron de una versión HTML parcial.
 
 ---
 
