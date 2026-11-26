@@ -20,6 +20,8 @@ Registro completo de ensayos, con resultados, controles y retractaciones: `../do
 | `jacobi_inverso.py` | Matriz de Jacobi (Lanczos, 250 dígitos) desde 80 ceros frente a GUE | E10 |
 | `neff_cue.py` | Ceros frente a CUE de tamaño efectivo N_eff (Bogomolny et al. 2006) | E19 |
 | `r2_bk.py` | R₂(s) de los ceros frente a GUE y a la primera corrección de Bogomolny–Keating; amplitud según la altura | E20 |
+| `bk_completa.py` | Fórmula completa de Bogomolny–Keating para R₂(s) (diagonal + fuera de diagonal, sin expandir) frente a los ceros | E21 |
+| `pico_tau1.py` | Pico K(τ = 1) ≈ 41: identidad K(1) = \|Σ e^{2πi dₙ}\|²/N con el conteo de Turing | E22 |
 
 ## Material exploratorio, sin respaldo estadístico
 
