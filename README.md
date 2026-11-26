@@ -4,7 +4,7 @@
 
 ### Una lectura geométrica y espectral de la Hipótesis de Riemann
 
-**PFI-01** · Programa de investigación computacional · **v0.7**
+**PFI-01** · Programa de investigación computacional · **v0.8**
 
 *Benjamín Cabeza Durán*
 
@@ -74,6 +74,22 @@ Una nota de método: una primera ejecución dio un cociente 1.971 contra ln²x/8
 | Control (`connes_zst.py … control`) | Falla |
 
 Reproducido de forma idéntica en dos máquinas (la mía y Termux), tanto X = 13 como X = 30. **Alcance:** es mi ruta de cálculo (raíces de la función racional), no el operador con perturbación de rango uno del artículo (arXiv:2511.22755); no he verificado su Teorema 1.1 ni la autoadjunción, ni comparado con su sección numérica. El artículo es una reformulación de RH, no una prueba. Las fórmulas se copiaron de una versión HTML parcial.
+
+---
+
+### E24. El matroide de dependencia racional de los ceros
+
+`matroide_li.py` (mpmath, PSLQ). Se buscan relaciones lineales enteras entre las ordenadas γₙ: la hipótesis de independencia lineal (LI) equivale a que el matroide de dependencia sobre ℚ sea el libre.
+
+| Prueba | Resultado |
+|---|---|
+| 113 subconjuntos de 8 ceros (80 dígitos, coeficientes ≤ 10⁵) | 0 relaciones |
+| 109 subconjuntos de 12 ceros (120 dígitos, coeficientes ≤ 10⁴) | 0 relaciones |
+| Primeros 4, 6, 8, 10, 12 ceros | 0 relaciones |
+| Control: reales al azar de precisión completa | 0 relaciones |
+| Control: relación plantada 3γ₁ − 2γ₂ + 5γ₃ − γₖ = 0 | Recuperada exacta |
+
+Resultado nulo y esperado: matroide libre dentro del alcance del método (≈ 8–12 términos, coeficientes ≤ 10⁴–10⁵). No prueba LI. Reproducido en dos máquinas. Corrección propia: el primer control al azar usaba reales de 53 bits, que sí tienen relación entera.
 
 ---
 
@@ -240,6 +256,8 @@ Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bib
 
 ## Historial de versiones
 
+**v0.8** — E24: el matroide de dependencia racional de los ceros resulta libre dentro del alcance del método (`matroide_li.py`); E23 ampliado a X = 30 en precisión múltiple.
+
 **v0.7** — E23: los ceros de Riemann reproducidos desde la forma de Weil con primos ≤ 13 (`connes_zst.py`, `connes_mp.py`).
 
 **v0.6** — E19–E22: ceros frente a CUE de tamaño efectivo (la discrepancia de la correlación de espaciados queda explicada a alturas altas); corrección de Bogomolny–Keating a R₂(s) a primer orden (negativo a t bajo) y completa (positivo, sin parámetros); el pico K(τ = 1) explicado por una identidad exacta. Quedan abiertos el exceso de ⟨r⟩ sobre GUE a t bajo y el residuo de R₂ a t ≈ 6.5×10⁵. Se suben los scripts de E04–E06 y E11 que faltaban.
@@ -265,7 +283,7 @@ Parte del análisis (controles, scripts de las v0.4 y v0.5 y revisión crítica)
   author       = {Cabeza Durán, Benjamín},
   title        = {El pulso fractal del infinito (PFI-01)},
   year         = {2026},
-  version      = {0.7},
+  version      = {0.8},
   howpublished = {\url{https://github.com/mechmind-dwv/pulso_fractal_infinito}}
 }
 ```
