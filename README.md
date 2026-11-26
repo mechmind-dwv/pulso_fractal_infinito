@@ -4,7 +4,7 @@
 
 ### Una lectura geométrica y espectral de la Hipótesis de Riemann
 
-**PFI-01** · Programa de investigación computacional · **v0.6**
+**PFI-01** · Programa de investigación computacional · **v0.7**
 
 *Benjamín Cabeza Durán*
 
@@ -57,6 +57,22 @@ La cota condicional a RH, ln x (ln x − ln ln x)/(8π) para x ≥ 101 (Schoenfe
 Una nota de método: una primera ejecución dio un cociente 1.971 contra ln²x/8π. Era un artefacto: esa cota solo vale desde x ≈ 73.2 y la rejilla empezaba en x = 20.
 
 **Corrección de afirmaciones anteriores:** el ruido de K(τ) en SYK es ±0.3–0.5 (antes escribí ±0.05–0.1); una estimación mía de |S| ≈ 0.7 para Riemann–Siegel con M = N_RS resultó ser 1.40 al medirla.
+
+---
+
+### E23. Los ceros desde los primos (forma de Weil, Connes–Consani–Moscovici)
+
+`connes_zst.py` (numpy) y `connes_mp.py` (mpmath). Se construye la forma cuadrática de Weil QW_λ con **solo los primos ≤ X** (más la parte arquimediana), en una base de senos/cosenos sobre [0, ln X]; el autovector del menor autovalor da una función racional Σ cₙ/(z − 2πn/L) cuyas raíces reales se comparan con los ceros de Riemann.
+
+| Configuración | Resultado |
+|---|---|
+| X = 13, N = 40, doble precisión | 34–35 raíces según la máquina; 21–22 ceros a < 10⁻⁶; algunas raíces espurias |
+| X = 13, N = 40, 120 dígitos (`connes_mp.py 13 40 120`) | 28 raíces en (0, 97), **todas** ceros de Riemann, 0 espurias; 27 de 28 a < 10⁻⁶; 10 a < 10⁻³⁰ |
+| Precisión por cero (mpmath) | 7×10⁻⁵⁰ (k=1), 4.5×10⁻²⁸ (k=12), 5.6×10⁻¹⁷ (k=20), 3.8×10⁻¹¹ (k=25), 1.6×10⁻⁶ (k=28) |
+| Menores autovalores de QW | 9.5×10⁻⁵⁴, 7.7×10⁻⁴⁷, 1.5×10⁻⁴⁰, … (a 10⁻¹³ la doble precisión no los separa del ruido) |
+| Control (`connes_zst.py … control`) | Falla |
+
+Reproducido de forma idéntica en dos máquinas (la mía y Termux). **Alcance:** es mi ruta de cálculo (raíces de la función racional), no el operador con perturbación de rango uno del artículo (arXiv:2511.22755); no he verificado su Teorema 1.1 ni la autoadjunción, ni comparado con su sección numérica. El artículo es una reformulación de RH, no una prueba. Las fórmulas se copiaron de una versión HTML parcial.
 
 ---
 
@@ -223,6 +239,8 @@ Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bib
 
 ## Historial de versiones
 
+**v0.7** — E23: los ceros de Riemann reproducidos desde la forma de Weil con primos ≤ 13 (`connes_zst.py`, `connes_mp.py`).
+
 **v0.6** — E19–E22: ceros frente a CUE de tamaño efectivo (la discrepancia de la correlación de espaciados queda explicada a alturas altas); corrección de Bogomolny–Keating a R₂(s) a primer orden (negativo a t bajo) y completa (positivo, sin parámetros); el pico K(τ = 1) explicado por una identidad exacta. Quedan abiertos el exceso de ⟨r⟩ sobre GUE a t bajo y el residuo de R₂ a t ≈ 6.5×10⁵. Se suben los scripts de E04–E06 y E11 que faltaban.
 
 **v0.5** — Del «qué» al «cómo»: ensayos E10–E20 (SYK, xp en caja, Jacobi inverso, positividad de Weil, ψ(x) desde los ceros, enteros→ceros, GUE con primos, Riemann–Siegel con C₀). Resultados negativos documentados. Correcciones propias: ruido de K(τ) en SYK, estimación errónea de |S| en Riemann–Siegel, cociente 1.971 de E18. Se añade una nota neutral sobre la prueba en Lean anunciada el 20 nov 2026.
@@ -246,7 +264,7 @@ Parte del análisis (controles, scripts de las v0.4 y v0.5 y revisión crítica)
   author       = {Cabeza Durán, Benjamín},
   title        = {El pulso fractal del infinito (PFI-01)},
   year         = {2026},
-  version      = {0.6},
+  version      = {0.7},
   howpublished = {\url{https://github.com/mechmind-dwv/pulso_fractal_infinito}}
 }
 ```

@@ -37,3 +37,10 @@ resultados son indistinguibles. Se conservan como instrumentación visual (E09).
 ## Datos
 
 No se versionan. Ver la sección "Datos" del README principal para las descargas.
+
+### E23
+
+| Script | Qué hace |
+|---|---|
+| `connes_zst.py` | Forma de Weil con primos ≤ X en doble precision; `python3 connes_zst.py 13 40 ceros_100k.txt [control]` |
+| `connes_mp.py` | Misma construccion con mpmath y barrido en precision multiple; `python3 connes_mp.py 13 40 120` (~30-50 s) |
