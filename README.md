@@ -4,7 +4,7 @@
 
 ### Una lectura geométrica y espectral de la Hipótesis de Riemann
 
-**PFI-01** · Programa de investigación computacional · **v0.9**
+**PFI-01** · Programa de investigación computacional · **v0.10**
 
 *Benjamín Cabeza Durán*
 
@@ -112,6 +112,19 @@ Referencias: GUE 0.5996, GOE 0.5307. La clase la fija la simetría de la matriz 
 
 ---
 
+### E26. P(s) de los ceros a t bajo frente a GUE y a CUE de tamaño finito
+
+`ps_bbl.py` y `var_alturas.py` (numpy). P(s) = d²E/ds² con E(s) = det(1 − K) por Nyström; núcleo seno (GUE) o núcleo CUE con N continuo. El método da χ²/bin ≈ 1.7 sobre datos simulados cuya P(s) se conoce (suelo).
+
+| | χ²/bin frente a GUE | frente a CUE N = 4 | var(s) |
+|---|---|---|---|
+| 10⁵ ceros, t ≈ 4×10⁴ | 27.7 | 19.2 | 0.1607 (GUE 0.1801; CUE N = 4: 0.1678) |
+| 2 001 052 ceros, t ≈ 5.9×10⁵ | 277 (13.9 por 10⁵ espaciados) | 201 | n/d |
+
+La P(s) de los ceros es más estrecha que GUE a t bajo: faltan espaciados pequeños (−11σ en s ≈ 0.25) y grandes, y sobran los de s ≈ 0.75–1.15. Un CUE finito explica solo una parte; la continuación a N_eff ≈ 2 no normaliza (masa 1.59), de acuerdo con que la fórmula de Bogomolny et al. no se aplica a N_eff ≈ 2–3. Por bloques hasta t ≈ 1.1×10⁶, el exceso de ⟨r⟩ sobre GUE es compatible con 1/ln²(t/2π) (⟨r⟩∞ = 0.5998; GUE 0.5996). La asíntota de var(s) no queda determinada con ese rango. Una ventana por altura. Parcial y sin cerrar: falta la predicción completa de P(s) a este orden.
+
+---
+
 ## Contexto externo (27 nov 2026)
 
 El 20 de noviembre de 2026 Levent Alpöge publicó una biblioteca de Lean de unos 17 millones de líneas con una prueba formalizada de la Hipótesis de Riemann (otras fuentes dicen que de la generalizada para funciones L de Dirichlet, que la incluye). Según el [comunicado de Lean FRO y la Mathlib Initiative](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) del 21 de noviembre, decenas de personas la compilaron sin errores, `comparator` y `con-leche --compare` confirman que el teorema probado coincide con el enunciado `RiemannHypothesis` de Mathlib, y varios verificadores independientes aceptan la prueba exportada. El comunicado no describe una revisión matemática humana de las ideas ni indica qué axiomas usa; fuentes secundarias hablan de tres axiomas estándar y de reservas sobre la comprensión de la prueba de principio a fin. Las fuentes no coinciden del todo en fechas ni en el enunciado. Este repositorio **no depende de ese resultado ni lo usa**. Si se confirma, responde a RH, pero no hace innecesarias las preguntas de este programa (de dónde sale la estructura GUE de los ceros), que son de otro tipo. Una versión anterior de esta nota daba como pendientes el Comparator y una ejecución «paranoica» del kernel; el comunicado del 21 de noviembre los da por realizados.
@@ -144,6 +157,8 @@ curl -L -o zeros5.txt https://www-users.cse.umn.edu/~odlyzko/zeta_tables/zeros5 
 ```
 
 `ceros_100k.txt` (primeros 100.000 ceros) está en el repo.
+
+`ceros_1millon.txt` es `ceros_2M.txt.gz` descomprimido (2.001.052 ceros; el nombre se refiere a t ≈ 10⁶): `zcat ceros_2M.txt.gz > ceros_1millon.txt`.
 
 ---
 
@@ -280,6 +295,8 @@ Citadas de memoria salvo las que llevan enlace; conviene verificar los datos bib
 
 ## Historial de versiones
 
+**v0.10** — E26: P(s) de los ceros a t bajo (más estrecha que GUE; un CUE finito la explica en parte; ⟨r⟩ compatible con 1/ln²); `ceros_1millon.txt` documentado; `docs/ENSAYOS.md` reescrito (E01–E26).
+
 **v0.9** — E25: grafo cuántico con longitudes ln p; GUE o GOE según la simetría de la dispersión, igual con primos que con longitudes al azar (`grafo_controles.py`).
 
 **v0.8** — E24: el matroide de dependencia racional de los ceros resulta libre dentro del alcance del método (`matroide_li.py`); E23 ampliado a X = 30 en precisión múltiple.
@@ -309,7 +326,7 @@ Parte del análisis (controles, scripts de las v0.4 y v0.5 y revisión crítica)
   author       = {Cabeza Durán, Benjamín},
   title        = {El pulso fractal del infinito (PFI-01)},
   year         = {2026},
-  version      = {0.9},
+  version      = {0.10},
   howpublished = {\url{https://github.com/mechmind-dwv/pulso_fractal_infinito}}
 }
 ```
