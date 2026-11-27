@@ -53,3 +53,10 @@ No se versionan. Ver la sección "Datos" del README principal para las descargas
 | `grafo_controles.py` | Grafo cuántico K_V con longitudes ln p y controles (azar, ln n, S simétrica); `python3 grafo_controles.py 6 60 40` |
 
 `connes_mp.py` cuenta ahora los ceros consecutivos reproducidos y reparte los intervalos con polo (arregla ceros perdidos junto a un polo 2πn/L). Con X = 50 y N = 95: `python3 connes_mp.py 50 95 160` (~10 min en móvil).
+
+### E26
+
+| Script | Qué hace |
+|---|---|
+| `ps_bbl.py` | P(s) de los ceros frente a GUE (núcleo seno) y a CUE de N finito (determinante de Fredholm por Nyström); `python3 ps_bbl.py ceros_100k.txt` |
+| `var_alturas.py` | var(s) y ⟨r⟩ por bloques de altura y ajuste del exceso; `python3 var_alturas.py ceros_1millon.txt 100000` |
