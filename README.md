@@ -71,6 +71,8 @@ Una nota de método: una primera ejecución dio un cociente 1.971 contra ln²x/8
 | X = 30, N = 60, 150 dígitos (`connes_mp.py 30 60 150`, ~70–210 s) | 33 raíces en (0, 110), **todas** ceros de Riemann, 0 espurias; los 33 a < 10⁻⁶ y 30 a < 10⁻³⁰ (6×10⁻⁹⁵ en el primero, 5×10⁻³² en el 30.º) |
 | X = 13, N = 120, 200 dígitos (`connes_mp.py 13 120 200`, ~6 min) | Primer cero a **2.44×10⁻⁵⁵** y 50.º a **2.04×10⁻³**: las dos cifras que da el artículo (arXiv:2511.22755, tabla de λ = √13) |
 | X = 9 (λ = 3), N = 120 | Primer cero a 1.58×10⁻³⁴ y cero 20 a 2.42×10⁻⁷; el artículo da 1.6×10⁻³⁴ y 2.4×10⁻⁷ (figura 1) |
+| X = 50, N = 190, 260 dígitos (solo mi entorno, ~20 min) | 138 de 140 ceros en (0, 304) a < 10⁻⁶ (132 a < 10⁻³⁰), 0 espurias; los 2 que faltan estaban junto a un polo y los descartaba el barrido (corregido en la v2: X = 50, N = 95 da los 53 ceros de (0, 152)). Errores de ~10⁻¹⁰⁰ hasta t ≈ 200 |
+| X = 100, N = 200, 260 dígitos (solo mi entorno) | 119 de 120 ceros a < 10⁻⁶, pero los autovalores de QW (10⁻²⁶⁰) llegan al suelo de precisión y salen 3 raíces espurias bajo el primer cero. Hacen falta más de ~300 dígitos |
 | Precisión por cero (mpmath) | 7×10⁻⁵⁰ (k=1), 4.5×10⁻²⁸ (k=12), 5.6×10⁻¹⁷ (k=20), 3.8×10⁻¹¹ (k=25), 1.6×10⁻⁶ (k=28) |
 | Menores autovalores de QW | 9.5×10⁻⁵⁴, 7.7×10⁻⁴⁷, 1.5×10⁻⁴⁰, … (a 10⁻¹³ la doble precisión no los separa del ruido) |
 | Control (`connes_zst.py … control`) | Falla |
@@ -110,9 +112,9 @@ Referencias: GUE 0.5996, GOE 0.5307. La clase la fija la simetría de la matriz 
 
 ---
 
-## Contexto externo (25 nov 2026)
+## Contexto externo (27 nov 2026)
 
-El 20 de noviembre de 2026 se anunció una prueba formalizada en Lean de la Hipótesis de Riemann (en realidad de la generalizada), atribuida a Levent Alpöge y descrita como hallada con ayuda de Claude. Según lo publicado, compila, usa tres axiomas estándar y la han aceptado varios verificadores; quedan pendientes una ejecución «paranoica» del kernel y el Comparator. Está en revisión por la comunidad. Este repositorio **no la da por cerrada ni por refutada**, y no la usa ni depende de ella: no he podido consultar la declaración original del autor, y los recuentos de ficheros y líneas que circulan no coinciden entre fuentes. Si se confirma, responde al «qué» y a RH, pero no hace innecesarias las preguntas de este programa (de dónde sale la estructura GUE de los ceros), que son de otro tipo.
+El 20 de noviembre de 2026 Levent Alpöge publicó una biblioteca de Lean de unos 17 millones de líneas con una prueba formalizada de la Hipótesis de Riemann (otras fuentes dicen que de la generalizada para funciones L de Dirichlet, que la incluye). Según el [comunicado de Lean FRO y la Mathlib Initiative](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) del 21 de noviembre, decenas de personas la compilaron sin errores, `comparator` y `con-leche --compare` confirman que el teorema probado coincide con el enunciado `RiemannHypothesis` de Mathlib, y varios verificadores independientes aceptan la prueba exportada. El comunicado no describe una revisión matemática humana de las ideas ni indica qué axiomas usa; fuentes secundarias hablan de tres axiomas estándar y de reservas sobre la comprensión de la prueba de principio a fin. Las fuentes no coinciden del todo en fechas ni en el enunciado. Este repositorio **no depende de ese resultado ni lo usa**. Si se confirma, responde a RH, pero no hace innecesarias las preguntas de este programa (de dónde sale la estructura GUE de los ceros), que son de otro tipo. Una versión anterior de esta nota daba como pendientes el Comparator y una ejecución «paranoica» del kernel; el comunicado del 21 de noviembre los da por realizados.
 
 ---
 

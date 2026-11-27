@@ -44,3 +44,12 @@ No se versionan. Ver la sección "Datos" del README principal para las descargas
 |---|---|
 | `connes_zst.py` | Forma de Weil con primos ≤ X en doble precision; `python3 connes_zst.py 13 40 ceros_100k.txt [control]` |
 | `connes_mp.py` | Misma construccion con mpmath y barrido en precision multiple; `python3 connes_mp.py 13 40 120` (~30-50 s) |
+
+### E24 y E25
+
+| Script | Qué hace |
+|---|---|
+| `matroide_li.py` | Relaciones enteras entre las ordenadas de los ceros (PSLQ); `python3 matroide_li.py 60 8 80 100000` |
+| `grafo_controles.py` | Grafo cuántico K_V con longitudes ln p y controles (azar, ln n, S simétrica); `python3 grafo_controles.py 6 60 40` |
+
+`connes_mp.py` cuenta ahora los ceros consecutivos reproducidos y reparte los intervalos con polo (arregla ceros perdidos junto a un polo 2πn/L). Con X = 50 y N = 95: `python3 connes_mp.py 50 95 160` (~10 min en móvil).

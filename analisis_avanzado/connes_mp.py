@@ -60,14 +60,23 @@ def g(z): return mp.fsum(c[n] / (z - a[n]) for n in range(-N, N + 1))
 zmax = float(a[N]) - 1
 zz = [mp.mpf(k) / 100 for k in range(1, int(zmax * 100))]
 raices = []
+delta = mp.mpf(10) ** -12
+def intenta(lo, hi):
+    if g(lo) * g(hi) < 0:
+        try:
+            r = mp.findroot(g, (lo, hi), solver="anderson", tol=mp.mpf(10) ** (-mp.mp.dps // 2), maxsteps=200, verify=False)
+            if lo <= r <= hi: raices.append(r)
+        except Exception: pass
 gprev = g(zz[0])
 for i in range(len(zz) - 1):
     gnext = g(zz[i + 1])
-    if gprev * gnext < 0 and not any(zz[i] < a[n] < zz[i + 1] for n in range(0, N + 1)):
-        try:
-            r = mp.findroot(g, (zz[i], zz[i + 1]), solver="anderson", tol=mp.mpf(10) ** (-mp.mp.dps // 2), maxsteps=200, verify=False)
-            if zz[i] <= r <= zz[i + 1]: raices.append(r)
-        except Exception: pass
+    polos = [a[n] for n in range(0, N + 1) if zz[i] < a[n] < zz[i + 1]]
+    if not polos:
+        if gprev * gnext < 0: intenta(zz[i], zz[i + 1])
+    else:
+        pp = polos[0]
+        intenta(zz[i], pp - delta)
+        intenta(pp + delta, zz[i + 1])
     gprev = gnext
 raices = sorted(raices)
 uniq = []
@@ -90,5 +99,10 @@ for k, z in enumerate(zeros, 1):
     if k <= 12 or k % 5 == 0 or d > 1e-6:
         print(f"{k:3d}   {mp.nstr(z, 15):>22s}   {mp.nstr(raices[j] - z, 3):>22s}")
 print(f"ceros en el rango: {len(zeros)}; reproducidos a < 1e-30: {sum(1 for z in zeros if min(abs(r - z) for r in raices) < mp.mpf(10) ** -30)}; a < 1e-6: {sum(1 for z in zeros if min(abs(r - z) for r in raices) < mp.mpf(10) ** -6)}")
+consec = 0
+for z in zeros:
+    if min(abs(r - z) for r in raices) < mp.mpf(10) ** -6: consec += 1
+    else: break
+print(f"ceros consecutivos desde k=1 a < 1e-6: {consec} (hasta t = {mp.nstr(zeros[consec-1], 6) if consec else 0}); X = {X}, t/X = {float(zeros[consec-1])/X if consec else 0:.2f}")
 esp = [r for j, r in enumerate(raices) if j not in usadas]
 print(f"raices que no son ceros de Riemann (espurias): {len(raices) - len(usadas)}", [mp.nstr(r, 6) for r in esp][:12])

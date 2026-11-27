@@ -1,3 +1,5 @@
+> **Versión archivada (v0.3).** Contiene afirmaciones retiradas en la v0.4 (atractor extraño, red cósmica, materia oscura). El estado actual está en el README principal.
+
 <div align="center">
 
 # El pulso fractal del infinito
