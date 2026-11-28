@@ -60,3 +60,4 @@ No se versionan. Ver la sección "Datos" del README principal para las descargas
 |---|---|
 | `ps_bbl.py` | P(s) de los ceros frente a GUE (núcleo seno) y a CUE de N finito (determinante de Fredholm por Nyström); `python3 ps_bbl.py ceros_100k.txt` |
 | `var_alturas.py` | var(s) y ⟨r⟩ por bloques de altura y ajuste del exceso; `python3 var_alturas.py ceros_1millon.txt 100000` |
+| `var_alto.py` | var(s) y ⟨r⟩ de las ventanas de Odlyzko (10¹², 10²¹, 10²²) frente a los modelos de E26; `python3 var_alto.py .` |

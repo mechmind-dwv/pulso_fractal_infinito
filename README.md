@@ -121,7 +121,7 @@ Referencias: GUE 0.5996, GOE 0.5307. La clase la fija la simetría de la matriz 
 | 10⁵ ceros, t ≈ 4×10⁴ | 27.7 | 19.2 | 0.1607 (GUE 0.1801; CUE N = 4: 0.1678) |
 | 2 001 052 ceros, t ≈ 5.9×10⁵ | 277 (13.9 por 10⁵ espaciados) | 201 | n/d |
 
-La P(s) de los ceros es más estrecha que GUE a t bajo: faltan espaciados pequeños (−11σ en s ≈ 0.25) y grandes, y sobran los de s ≈ 0.75–1.15. Un CUE finito explica solo una parte; la continuación a N_eff ≈ 2 no normaliza (masa 1.59), de acuerdo con que la fórmula de Bogomolny et al. no se aplica a N_eff ≈ 2–3. Por bloques hasta t ≈ 1.1×10⁶, el exceso de ⟨r⟩ sobre GUE es compatible con 1/ln²(t/2π) (⟨r⟩∞ = 0.5998; GUE 0.5996). La asíntota de var(s) no queda determinada con ese rango. Una ventana por altura. Parcial y sin cerrar: falta la predicción completa de P(s) a este orden.
+La P(s) de los ceros es más estrecha que GUE a t bajo: faltan espaciados pequeños (−11σ en s ≈ 0.25) y grandes, y sobran los de s ≈ 0.75–1.15. Un CUE finito explica solo una parte; la continuación a N_eff ≈ 2 no normaliza (masa 1.59), de acuerdo con que la fórmula de Bogomolny et al. no se aplica a N_eff ≈ 2–3. Por bloques hasta t ≈ 1.1×10⁶, el exceso de ⟨r⟩ sobre GUE es compatible con 1/ln²(t/2π) (⟨r⟩∞ = 0.5998; GUE 0.5996). La asíntota de var(s) no queda determinada con ese rango. Una ventana por altura. A t ≈ 10¹²–10²² (una ventana de 10⁴ ceros por altura, `var_alto.py`) var(s) = 0.1767, 0.1795, 0.1758 (± 0.003 cada una; media ponderada 0.1772 ± 0.0016, GUE a −1.7σ) y ⟨r⟩ = 0.6000, 0.5972, 0.6019: compatible con GUE y con 1/ln² para ⟨r⟩; descarta la asíntota 0.1715 (ajuste 1/ln³, p = 0.003) pero no distingue las demás. Acotado, no cerrado. Parcial y sin cerrar: falta la predicción completa de P(s) a este orden.
 
 ---
 

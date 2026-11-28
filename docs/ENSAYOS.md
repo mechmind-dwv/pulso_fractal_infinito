@@ -103,7 +103,7 @@ Cada ensayo: pregunta, resultado frente a teoría, control, veredicto. Lo no ver
   del método 1.7; var(s) 0.1607 frente a 0.1801). Un CUE de N finito (N = 4–5) explica solo una parte (χ²/bin 19;
   var 0.168–0.172); la continuación a N_eff = 2 no normaliza. Hasta t ≈ 1.1·10⁶, el exceso de ⟨r⟩ sobre GUE es
   compatible con 1/ln²(t/2π) (⟨r⟩∞ = 0.5998); la asíntota de var(s) no queda determinada con ese rango. El fichero
-  `ceros_1millon.txt` contiene 2 001 052 ceros (idéntico a `ceros_2M.txt.gz` descomprimido).
+  `ceros_1millon.txt` contiene 2 001 052 ceros (idéntico a `ceros_2M.txt.gz` descomprimido). A t ≈ 10¹²–10²² (una ventana de 10⁴ ceros por altura, `var_alto.py`) var(s) = 0.1767, 0.1795, 0.1758 (± 0.003 cada una; media ponderada 0.1772 ± 0.0016, GUE a −1.7σ) y ⟨r⟩ = 0.6000, 0.5972, 0.6019: compatible con GUE y con 1/ln² para ⟨r⟩; descarta la asíntota 0.1715 (ajuste 1/ln³, p = 0.003) pero no distingue las demás. Acotado, no cerrado.
 
 ## Retractaciones y errores corregidos
 
